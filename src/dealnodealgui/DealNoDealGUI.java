@@ -8,6 +8,14 @@ package dealnodealgui;
  *
  * @author benma
  */
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Random;
+import java.util.Scanner;
+
 public class DealNoDealGUI {
 
     /**
