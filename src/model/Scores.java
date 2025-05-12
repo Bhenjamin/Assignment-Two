@@ -1,4 +1,4 @@
-package dealnodealgui;
+package model;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,9 +9,10 @@ package dealnodealgui;
  *
  * @author benma
  */
+import controller.Main;
 import java.io.*;
 import java.util.LinkedHashMap;
-public class Scores extends DealNoDealGUI
+public class Scores extends Main
 {   
     // Temporary plater LinkedHashMap
     LinkedHashMap<String, Integer> playerInfo = new LinkedHashMap<>();

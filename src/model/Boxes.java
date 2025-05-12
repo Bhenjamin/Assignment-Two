@@ -1,4 +1,4 @@
-package dealnodealgui;
+package model;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,10 +9,11 @@ package dealnodealgui;
  *
  * @author benma
  */
+import controller.Main;
 import java.util.Collections;
 
 
-public class Boxes extends DealNoDealGUI {
+public class Boxes extends Main {
 
     public static void initialiseBoxes()
     {

@@ -1,4 +1,6 @@
-package dealnodealgui;
+package model;
+
+import controller.Main;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -10,7 +12,7 @@ package dealnodealgui;
  * @author benma
  */
 
-public class Banker extends DealNoDealGUI {
+public class Banker extends Main {
         
     // Gets the mean of remaining boxes
     public static double getAverage()

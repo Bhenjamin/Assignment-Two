@@ -1,4 +1,6 @@
-package dealnodealgui;
+package model;
+
+import controller.Main;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,7 +11,7 @@ package dealnodealgui;
  *
  * @author benma
  */
-public class Player extends DealNoDealGUI {
+public class Player extends Main {
     // Initialising variables
     private String name;
     private final int box;
