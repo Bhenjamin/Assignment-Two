@@ -1,5 +1,6 @@
-package controller;
+package model;
 
+import controller.Main;
 import model.Banker;
 import model.Boxes;
 import java.io.*;
