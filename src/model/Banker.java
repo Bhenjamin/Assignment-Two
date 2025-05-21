@@ -12,7 +12,7 @@ import controller.Main;
  * @author benma
  */
 
-public class Banker extends Main {
+public class Banker {
         
     // Gets the mean of remaining boxes
     public static double getAverage()

@@ -25,7 +25,7 @@ public class Main {
     
     
     // Initialising variables
-    public static ArrayList<Box> boxList = new ArrayList<>();
+    
     public static Random rand = new Random();
     public static Player player = new Player();
     public static Scores scores = new Scores();

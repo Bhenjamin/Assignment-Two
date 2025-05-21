@@ -4,33 +4,48 @@
  */
 package controller;
 import java.awt.event.*;
-import model.DOND_Model;
+import model.*;
 import view.DOND_View;
 /**
  *
  * @author benma
  */
-public class DOND_Controller implements ActionListener {
+public class DOND_Controller implements ActionListener, GameChangeListener {
     
     public DOND_View view;
     public DOND_Model model;
+    private Player player;
+
     
-    public DOND_Controller(View view, Model model) {
-        this.view = view;
+    public DOND_Controller(DOND_View view, DOND_Model model) {
         this.model = model;
+        this.view = view;
+        
         this.view.addActionListener(this);
+        this.model.addGameListener(this);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String command = "add in a function later";
+        // Gets the text of the button e.g. "enter"
+        String command = e.getActionCommand();
         
         // Uses switch case to detemine what happens on action
         switch(command){
-            case view.Box:
+            case "submit":
+                String username = view.usernameField.getText();
+                model.notifyUserNameEntered(username);
+                view.gameScreen();
+                break;
+            
+            case "box":
+                int boxNumber = Integer.parseInt(view.boxButton.getText());
+                model.notifyBoxClicked(boxNumber);
                 
-                return;
+                // Need to update the banker after a certain amount of rounds
+                break;
         }
     }
+    
     
 }
