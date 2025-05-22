@@ -1,6 +1,7 @@
 package model;
 
-import controller.Main;
+import java.util.ArrayList;
+import java.util.Random;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,12 +14,17 @@ import controller.Main;
  */
 
 public class Banker {
-        
+    // References boxList from Model
+    private final ArrayList<Box> boxList;
+    private final Random rand = new Random();
+    
+    public Banker(ArrayList<Box> boxList) {
+        this.boxList = boxList;
+    }
     // Gets the mean of remaining boxes
-    public static double getAverage()
+    public double getAverage()
     {
         double avg = 0.0;
-
 
         for(int i = 0; i < boxList.size(); i++){
             // Averages box only if has not been opened
@@ -32,7 +38,7 @@ public class Banker {
     }
     
     // Calcualates the bank offer avg - sum proportional to the avg
-    public static int bankerOffer()
+    public int bankerOffer()
     {
         double avg = getAverage(); 
         int random = 0;
