@@ -1,8 +1,8 @@
 package model;
 
-import controller.Main;
+import controller.OldMain;
 import model.Banker;
-import model.BoxSetup;
+import model.BoxModel;
 import java.io.*;
 
 /*
@@ -14,7 +14,7 @@ import java.io.*;
  *
  * @author benma
  */
-public class GameLogic extends Main {
+public class OldGameLogic extends OldMain {
     
     // Initialising variables
     public static String answer;
@@ -28,15 +28,15 @@ public class GameLogic extends Main {
         round++;
 
         selectBoxes();
-        BoxSetup.displayBoxes();
-        BoxSetup.displayPlayerBox();
+        BoxModel.displayBoxes();
+        BoxModel.displayPlayerBox();
         
         offer = Banker.bankerOffer();
         if (takeOffer()) endGame();
         else if (round < 5) 
         {
             System.out.println("Very well then the game shall continue");
-            BoxSetup.displayBoxes();
+            BoxModel.displayBoxes();
             gameLogic();
         } else
         {
@@ -59,7 +59,7 @@ public class GameLogic extends Main {
                 System.out.println("Final stretch! Open the last box");
             } else System.out.println("Please select "+questionCount+" boxes to be opened");
         } else{
-            BoxSetup.displayBoxes();
+            BoxModel.displayBoxes();
             System.out.println((questionCount)+" Boxes left to select.");
         }
 
@@ -80,7 +80,7 @@ public class GameLogic extends Main {
             {
                 if (!(number == player.getBox()))
                 {
-                    BoxSetup.openBox(number);
+                    BoxModel.openBox(number);
                     questionCount--;
                     if (questionCount > 0)
                     {
@@ -143,15 +143,15 @@ public class GameLogic extends Main {
         {
             System.out.println("Offer taken of "+player.getOfferTaken()+" taken . Now let open your box and see if you have won!");
             System.out.println("As a reminder here is your box");
-            BoxSetup.displayPlayerBox();
+            BoxModel.displayPlayerBox();
             System.out.println("Now lets open it");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            BoxSetup.openBox(player.getBox());
-            BoxSetup.displayPlayerBox();
+            BoxModel.openBox(player.getBox());
+            BoxModel.displayPlayerBox();
             if (boxList.get(player.getBox()).getValue() >= player.getOfferTaken())
             {
                 System.out.println("Unfortunately you have lost :(");
@@ -163,7 +163,7 @@ public class GameLogic extends Main {
 
         else{
             
-            BoxSetup.openBox(player.getBox());
+            BoxModel.openBox(player.getBox());
             // Sets the player money offer to their box value
             player.setOfferTaken(playerBoxValue);
             System.out.println("Now here is your box");
@@ -172,7 +172,7 @@ public class GameLogic extends Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            BoxSetup.displayPlayerBox();
+            BoxModel.displayPlayerBox();
         }
 
         scores.saveScores(playerInfo);

@@ -38,6 +38,7 @@ public class DOND_View extends JFrame {
     public DOND_View(){
         setTitle("Deal or No Deal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1920, 1090);
         
         startPanel.add(headingText);
         startPanel.add(subHeadingText);

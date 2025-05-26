@@ -14,10 +14,15 @@ import java.util.List;
 public class DOND_Model {
     private Player player;
     private List<GameChangeListener> listeners = new ArrayList<>();
+    private BoxModel boxModel;
     
     public DOND_Model(){
         // initilises Player object 
         this.player = new Player();
+        // Used when manipulating boxes 
+        this.boxModel = new BoxModel();
+        // Sets up boxes
+        this.boxModel.initialiseBoxes();
     }
     
     public void addGameListener(GameChangeListener listener) {
@@ -47,8 +52,15 @@ public class DOND_Model {
     
     
     public void endRound(){
-        int offer = Banker.bankerOffer();
-        notifyRoundEnded(offer);
+//        int offer = bankerOffer();
+//        notifyRoundEnded(offer);
+    }
+    
+    
+    public void openBox(int index){
+        boxModel.getBoxList().get(index).open();
+        // Notifies the view that a box has been opened
+        notifyBoxClicked(index);
     }
     
 }

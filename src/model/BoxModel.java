@@ -13,13 +13,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class BoxSetup {
+public class BoxModel {
     private final ArrayList<Box> boxList;
     
     
-    public BoxSetup(){
+    public BoxModel(){
         this.boxList = new ArrayList<>();
     }
+    
     public void initialiseBoxes()
     {
         // Values $ amounts for the boxes 
@@ -42,17 +43,6 @@ public class BoxSetup {
     
     public ArrayList<Box> getBoxList() {
         return boxList;
-    }
-
-    public void openBox(Box box){
-        box.open();
-        // Notifies the view that a box has been opened
-        notifyBoxClicked(box.getValue());
-    }
-    // Opens the box
-    public void openBox(int boxIndex){
-        // opens a box revealing the cash value
-        boxList.get(boxIndex).open();
     }
     
 

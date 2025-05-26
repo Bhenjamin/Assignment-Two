@@ -9,10 +9,10 @@ package model;
  *
  * @author benma
  */
-import controller.Main;
+import controller.OldMain;
 import java.io.*;
 import java.util.LinkedHashMap;
-public class Scores extends Main
+public class OldScores extends OldMain
 {   
     // Temporary plater LinkedHashMap
     LinkedHashMap<String, Integer> playerInfo = new LinkedHashMap<>();
