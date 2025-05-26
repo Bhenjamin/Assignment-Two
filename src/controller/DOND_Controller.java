@@ -32,7 +32,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         
         // Uses switch case to detemine what happens on action
         switch(command){
-            case "submit":
+            case "Submit":
                 String username = view.usernameField.getText();
                 model.notifyUserNameEntered(username);
                 view.gameScreen();

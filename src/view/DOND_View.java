@@ -86,7 +86,7 @@ public class DOND_View extends JFrame {
     
     // Contains all the components that require actions listeners
     public void addActionListener(ActionListener listener) {
-        this.usernameField.addActionListener(listener);
+        this.submitButton.addActionListener(listener);
         this.boxButton.addActionListener(listener);
     }
     
