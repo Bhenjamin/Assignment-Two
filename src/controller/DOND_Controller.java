@@ -46,6 +46,21 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 break;
         }
     }
+
+    @Override
+    public void onUserNameEntered(String username) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public void onBoxClicked(int boxNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
+    @Override
+    public void onRoundEnded(int bankerOffer) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     
 }
