@@ -12,17 +12,26 @@ import java.util.List;
  * @author benma
  */
 public class DOND_Model {
-    private Player player;
     private List<GameChangeListener> listeners = new ArrayList<>();
     private BoxModel boxModel;
+    private DBManager dbManager;
+    private DBScores dbscores;
+    private Player player;
     
     public DOND_Model(){
-        // initilises Player object 
-        this.player = new Player();
         // Used when manipulating boxes 
         this.boxModel = new BoxModel();
         // Sets up boxes
         this.boxModel.initialiseBoxes();
+        // Setups database for scores
+        this.dbManager = new DBManager();
+        this.dbscores = new DBScores(dbManager);
+        dbscores.createScoresTable();
+    }
+    
+    // Gets Player data
+    public Player getPlayer() {
+        return player;
     }
     
     public void addGameListener(GameChangeListener listener) {
@@ -30,8 +39,9 @@ public class DOND_Model {
     }
     
     public void notifyUserNameEntered(String username) {
-        // Sets the user in the player object
-        player.setUsername(username);
+        // Initilises a new Player object after username
+        // Has been submited
+        this.player = new Player(username);
         // Notifies the classes
         for (GameChangeListener listener : listeners) {
             listener.onUserNameEntered(username);
@@ -50,6 +60,13 @@ public class DOND_Model {
         }
     }
     
+    public void notifyGameEnded(Player player) {
+        dbscores.newPlayerEntry(getPlayer());
+        
+        for (GameChangeListener listener : listeners) {
+            listener.onGameEnded(player);
+        }
+    }
     
     public void endRound(){
 //        int offer = bankerOffer();

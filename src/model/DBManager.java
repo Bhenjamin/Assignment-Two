@@ -18,17 +18,12 @@ public final class DBManager {
 
     private static final String USER_NAME = "PDC"; //your DB username
     private static final String PASSWORD = "PDC"; //your DB password
-    private static final String URL = "jdbc:derby://localhost:1527/BookStoreDB";  //url of the DB host
+    private static final String URL = "jdbc:derby:DOND_db;create=true";  //url of the DB host
 
     Connection conn;
 
     public DBManager() {
         establishConnection();
-    }
-
-    public static void main(String[] args) {
-        DBManager dbManager = new DBManager();
-        System.out.println(dbManager.getConnection());
     }
 
     public Connection getConnection() {

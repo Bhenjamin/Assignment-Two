@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package view;
-import model.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
@@ -31,6 +30,7 @@ public class DOND_View extends JFrame {
     
     // Initialises Buttons
     private final JButton submitButton = new JButton("Submit");
+    private final JButton quitButton = new JButton("Quit");
     // Potentially could have the boxes as buttons?
     public final JButton boxButton = new JButton();
    
@@ -44,6 +44,7 @@ public class DOND_View extends JFrame {
         startPanel.add(subHeadingText);
         startPanel.add(usernameField);
         startPanel.add(submitButton);
+        startPanel.add(quitButton);
         
         add(startPanel);
     }
@@ -88,6 +89,7 @@ public class DOND_View extends JFrame {
     public void addActionListener(ActionListener listener) {
         this.submitButton.addActionListener(listener);
         this.boxButton.addActionListener(listener);
+        this.quitButton.addActionListener(listener);
     }
     
 }

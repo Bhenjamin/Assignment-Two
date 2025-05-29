@@ -32,10 +32,10 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         
         // Uses switch case to detemine what happens on action
         switch(command){
+            
             case "Submit":
                 String username = view.usernameField.getText();
                 model.notifyUserNameEntered(username);
-                view.gameScreen();
                 break;
             
             case "box":
@@ -44,12 +44,22 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 
                 // Need to update the banker after a certain amount of rounds
                 break;
+                
+            case "quit":
+                model.notifyGameEnded(player);
+                break;
+                
+            default:
+                System.exit(0);
+                break;
         }
     }
 
     @Override
     public void onUserNameEntered(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        // After Player is created in model
+        // Switch to the main game
+        view.gameScreen();      
     }
 
     @Override
@@ -60,6 +70,11 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     @Override
     public void onRoundEnded(int bankerOffer) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public void onGameEnded(Player player) {
+        System.exit(0);
     }
     
     
