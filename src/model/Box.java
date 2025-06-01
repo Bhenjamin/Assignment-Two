@@ -19,6 +19,7 @@ public class Box {
     public Box(int value){
         this.value = value;
         this.isOpened = false;
+        
     }
     
     public int getValue() {
