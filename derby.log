@@ -1,7 +1,7 @@
-Thu May 29 23:06:51 NZST 2025 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Sun Jun 01 15:04:02 NZST 2025 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu May 29 23:06:53 NZST 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0197-1bb9-3453-000041e42948 
+Sun Jun 01 15:04:03 NZST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0197-2972-3f13-000041e42948 
 on database directory C:\Users\benma\Documents\DealNoDealGUI\DOND_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
 Loaded from file:/C:/Users/benma/Documents/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\benma\Documents\DealNoDealGUI
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Jun 01 15:18:33 NZST 2025: Shutting down Derby engine
+----------------------------------------------------------------
+Sun Jun 01 15:18:33 NZST 2025:
+Shutting down instance a816c00e-0197-2972-3f13-000041e42948 on database directory C:\Users\benma\Documents\DealNoDealGUI\DOND_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+----------------------------------------------------------------

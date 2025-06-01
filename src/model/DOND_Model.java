@@ -61,6 +61,7 @@ public class DOND_Model {
     }
     
     public void notifyGameEnded(Player player) {
+        System.out.println("Game has ended");
         dbscores.newPlayerEntry(getPlayer());
         
         for (GameChangeListener listener : listeners) {

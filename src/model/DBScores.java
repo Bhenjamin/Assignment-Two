@@ -56,6 +56,7 @@ public class DBScores {
     }
 
     public void newPlayerEntry(Player player) {
+        System.out.println("Player data entered sucessfully");
         String sql = "INSERT INTO SCORESTABLE (NAME, SCORE) VALUES (?,?)";
         try (PreparedStatement pstmt = conn.prepareStatement(sql);) {
             pstmt.setString(1, player.getUsername());

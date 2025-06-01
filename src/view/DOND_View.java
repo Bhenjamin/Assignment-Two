@@ -58,6 +58,8 @@ public class DOND_View extends JFrame {
         
         headingText.setText("Deal or No Deal?");
         gameScreenPanel.add(headingText);
+        gameScreenPanel.add(quitButton);
+        add(gameScreenPanel);
         
         revalidate();
         repaint();

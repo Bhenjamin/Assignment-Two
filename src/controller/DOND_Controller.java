@@ -45,7 +45,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 // Need to update the banker after a certain amount of rounds
                 break;
                 
-            case "quit":
+            case "Quit":
                 model.notifyGameEnded(player);
                 break;
                 
