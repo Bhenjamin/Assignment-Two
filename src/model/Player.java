@@ -19,11 +19,11 @@ public class Player {
     private int offerTaken;
     
     // Player constructor
-    public Player(String username)
+    public Player(String username, int offerTaken)
     {
         this.username = username;
         this.box = rand.nextInt(25);
-        this.offerTaken = 0;
+        this.offerTaken = offerTaken;
     }
 
     public int getBox() {

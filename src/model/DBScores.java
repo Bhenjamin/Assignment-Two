@@ -5,6 +5,8 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -44,9 +46,9 @@ public class DBScores {
 
     public ResultSet getScores() {
         ResultSet rs = null;
+        String sqlQuery = "SELECT NAME, SCORE FROM SCORESTABLE";
         try {
             statement = conn.createStatement();
-            String sqlQuery = "SELECT NAME, SCORE FROM SCORESTABLE";
             rs = statement.executeQuery(sqlQuery);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -66,6 +68,41 @@ public class DBScores {
             System.err.println(ex.getMessage());
         }
     }
+    
+    public ArrayList<Player> getAllPlayers(){
+        ArrayList<Player> allPlayers = new ArrayList<>();
+        String sql = "SELECT NAME, SCORE FROM SCORESTABLE";
+        try{
+            statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            
+            while(rs.next()){
+                String username = rs.getString("NAME");
+                int score = rs.getInt("SCORE");
+                allPlayers.add(new Player(username, score));
+                
+            }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        
+        Collections.sort(allPlayers, new sortByScore());
+        return allPlayers;
+    }
+    
+    public ArrayList<Player> getLeaderBoard(){
+        ArrayList<Player> leaderBoardPlayers = getAllPlayers();
+        int index = leaderBoardPlayers.size();
+        
+        while(leaderBoardPlayers.size() < 10){
+            leaderBoardPlayers.remove(index);
+            index--;
+        }
+        return leaderBoardPlayers;
+    }
+    
+
 
     public void dropATableIfExists(String tableName) {
         try (Statement table = conn.createStatement(); 

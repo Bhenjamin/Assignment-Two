@@ -41,7 +41,7 @@ public class DOND_Model {
     public void notifyUserNameEntered(String username) {
         // Initilises a new Player object after username
         // Has been submited
-        this.player = new Player(username);
+        this.player = new Player(username, 0);
         // Notifies the classes
         for (GameChangeListener listener : listeners) {
             listener.onUserNameEntered(username);
