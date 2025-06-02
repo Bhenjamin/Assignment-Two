@@ -12,4 +12,5 @@ public interface GameChangeListener {
     void onUserNameEntered(String username);
     void onBoxClicked(int boxNumber);
     void onRoundEnded(int bankerOffer);
+    void onGameEnded(Player player);
 }
