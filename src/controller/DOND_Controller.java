@@ -4,6 +4,7 @@
  */
 package controller;
 import java.awt.event.*;
+import javax.swing.JButton;
 import model.*;
 import view.DOND_View;
 /**
@@ -38,12 +39,11 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 view.gameScreen();
                 break;
             
-            case "box":
-                int boxNumber = Integer.parseInt(view.boxButton.getText());
-                model.notifyBoxClicked(boxNumber);
-                
-                // Need to update the banker after a certain amount of rounds
-                break;
+            default:
+                if (command.startsWith("Box ")) {
+                    int boxNum = Integer.parseInt(command.substring(4));
+                    model.openBox(boxNum-1);
+                }
         }
     }
 
@@ -54,7 +54,11 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
 
     @Override
     public void onBoxClicked(int boxNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        JButton boxButton = view.getBoxButtons().get(boxNumber);
+        Box openBox = model.getBoxModel().getBoxList().get(boxNumber);
+        
+        
+        
     }
 
     @Override

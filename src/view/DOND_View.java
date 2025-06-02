@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package view;
+import java.awt.GridLayout;
 import model.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -31,8 +33,9 @@ public class DOND_View extends JFrame {
     
     // Initialises Buttons
     private final JButton submitButton = new JButton("Submit");
-    // Potentially could have the boxes as buttons?
-    public final JButton boxButton = new JButton();
+    
+    // The boxes as button lists
+    public final ArrayList<JButton> boxButton = new ArrayList<>();
    
     // Default Screen - Start Screen
     public DOND_View(){
@@ -49,14 +52,28 @@ public class DOND_View extends JFrame {
     }
     
    
-
+    public ArrayList<JButton> getBoxButtons() {
+        return boxButton;
+    }
     
     // Game Screen
     public void gameScreen(){
         getContentPane().removeAll();
         
         headingText.setText("Deal or No Deal?");
+        gameScreenPanel.setLayout(new GridLayout(4, 5, 10, 10));
         gameScreenPanel.add(headingText);
+        
+        boxButton.clear();
+        for (int i = 1; i <= 25; i++)
+        {
+            JButton button = new JButton(String.valueOf(i));
+            button.setActionCommand("Box "+i);
+            boxButton.add(button);
+            gameScreenPanel.add(button);
+        }
+        
+        add(gameScreenPanel);
         
         revalidate();
         repaint();
@@ -87,7 +104,11 @@ public class DOND_View extends JFrame {
     // Contains all the components that require actions listeners
     public void addActionListener(ActionListener listener) {
         this.submitButton.addActionListener(listener);
-        this.boxButton.addActionListener(listener);
+        
+        for (JButton button : boxButton)
+        {
+            button.addActionListener(listener);
+        }
     }
     
 }

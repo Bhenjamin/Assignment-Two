@@ -62,5 +62,9 @@ public class DOND_Model {
         // Notifies the view that a box has been opened
         notifyBoxClicked(index);
     }
+
+    public BoxModel getBoxModel() {
+        return this.boxModel;
+    }
     
 }
