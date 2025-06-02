@@ -38,6 +38,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 String username = view.usernameField.getText();
                 model.notifyUserNameEntered(username);
                 view.gameScreen();
+                view.addActionListener(this);
                 break;
             
             default:
@@ -60,7 +61,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         // Update button
         boxButton.setEnabled(false);
         boxButton.setText(String.valueOf(openBox.getValue()));
-        boxButton.setBackground(Color.DARK_GRAY);
+        boxButton.setBackground(Color.BLACK);
     }
 
     @Override

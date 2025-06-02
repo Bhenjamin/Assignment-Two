@@ -61,13 +61,14 @@ public class DOND_View extends JFrame {
         getContentPane().removeAll();
         
         headingText.setText("Deal or No Deal?");
+        gameScreenPanel.removeAll();
         gameScreenPanel.setLayout(new GridLayout(4, 5, 10, 10));
         gameScreenPanel.add(headingText);
         
         boxButton.clear();
         for (int i = 1; i <= 25; i++)
         {
-            JButton button = new JButton(String.valueOf(i));
+            JButton button = new JButton("Box "+i);
             button.setActionCommand("Box "+i);
             boxButton.add(button);
             gameScreenPanel.add(button);

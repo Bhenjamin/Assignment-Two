@@ -25,12 +25,12 @@ public class Box {
         return value;
     }
 
-    public boolean isOpened() {
+    public boolean isOpen() {
         return isOpened;
     }
 
     public void open() {
-        isOpened = true;
+        this.isOpened = true;
     }
 
     public void setValue(int value) {

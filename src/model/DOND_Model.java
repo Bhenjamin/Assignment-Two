@@ -40,7 +40,10 @@ public class DOND_Model {
     }
 
     public void notifyBoxClicked(int boxNumber) {
-        openBox(boxNumber);
+        Box box = boxModel.getBoxList().get(boxNumber);
+        if (box.isOpen()) return;
+        
+        box.open();
         for (GameChangeListener listener : listeners) {
             listener.onBoxClicked(boxNumber);
         }
@@ -58,12 +61,6 @@ public class DOND_Model {
 //        notifyRoundEnded(offer);
     }
     
-    
-    public void openBox(int index){
-        boxModel.getBoxList().get(index).open();
-        // Notifies the view that a box has been opened
-        notifyBoxClicked(index);
-    }
 
     public BoxModel getBoxModel() {
         return this.boxModel;
