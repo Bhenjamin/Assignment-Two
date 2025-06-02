@@ -44,7 +44,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
             default:
                 if (command.startsWith("Box ")) {
                     int boxNum = Integer.parseInt(command.substring(4));
-                    model.notifyBoxClicked(boxNum);
+                    model.notifyBoxClicked(boxNum-1);
                 }
         }
     }
@@ -61,7 +61,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         // Update button
         boxButton.setEnabled(false);
         boxButton.setText(String.valueOf(openBox.getValue()));
-        boxButton.setBackground(Color.BLACK);
+        boxButton.setBackground(Color.DARK_GRAY);
     }
 
     @Override
