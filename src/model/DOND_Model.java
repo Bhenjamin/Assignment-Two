@@ -36,9 +36,11 @@ public class DOND_Model {
         for (GameChangeListener listener : listeners) {
             listener.onUserNameEntered(username);
         }
+        //
     }
 
     public void notifyBoxClicked(int boxNumber) {
+        openBox(boxNumber);
         for (GameChangeListener listener : listeners) {
             listener.onBoxClicked(boxNumber);
         }

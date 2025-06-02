@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.JButton;
 import model.*;
@@ -42,14 +43,13 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
             default:
                 if (command.startsWith("Box ")) {
                     int boxNum = Integer.parseInt(command.substring(4));
-                    model.openBox(boxNum-1);
+                    model.notifyBoxClicked(boxNum);
                 }
         }
     }
 
     @Override
     public void onUserNameEntered(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
@@ -57,8 +57,10 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         JButton boxButton = view.getBoxButtons().get(boxNumber);
         Box openBox = model.getBoxModel().getBoxList().get(boxNumber);
         
-        
-        
+        // Update button
+        boxButton.setEnabled(false);
+        boxButton.setText(String.valueOf(openBox.getValue()));
+        boxButton.setBackground(Color.DARK_GRAY);
     }
 
     @Override
