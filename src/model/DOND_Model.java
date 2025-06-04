@@ -60,9 +60,12 @@ public class DOND_Model {
         }
     }
     
-    public void notifyGameEnded(Player player) {
+    public void notifyGameEnded() {
         System.out.println("Game has ended");
-        dbscores.newPlayerEntry(getPlayer());
+        // Won't add a new entry to database if player is never created
+        if(player != null){
+            dbscores.newPlayerEntry(getPlayer());
+        }
         
         for (GameChangeListener listener : listeners) {
             listener.onGameEnded(player);

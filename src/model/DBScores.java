@@ -60,9 +60,13 @@ public class DBScores {
     public void newPlayerEntry(Player player) {
         System.out.println("Player data entered sucessfully");
         String sql = "INSERT INTO SCORESTABLE (NAME, SCORE) VALUES (?,?)";
+        
+        String playerName = player.getUsername();
+        int playerScore = player.getOfferTaken();
+        
         try (PreparedStatement pstmt = conn.prepareStatement(sql);) {
-            pstmt.setString(1, player.getUsername());
-            pstmt.setInt(2, player.getOfferTaken());
+            pstmt.setString(1, playerName);
+            pstmt.setInt(2, playerScore);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

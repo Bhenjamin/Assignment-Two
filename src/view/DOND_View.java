@@ -12,25 +12,17 @@ import javax.swing.*;
  */
 
 public class DOND_View extends JFrame {
-
     
-    // Intitalises Panels
-    private final JPanel startPanel = new JPanel();
-    private final JPanel gameScreenPanel = new JPanel();
-    private final JPanel winScreenPanel = new JPanel();
-    private final JPanel loseScreenPanel = new JPanel();
+    // Intialising classes that handle the different screens
+    private final StartScreen startScreen = new StartScreen();
     
-    
-    // Initialises Labels
-    private final JLabel headingText = new JLabel("Welcome to Deal or No Deal");
-    private final JLabel subHeadingText = new JLabel("enter your username to begin");
+    // Initialises Labels - move to GameScreen class later
     private final JLabel bankerOffer = new JLabel();
     // Intialises text field
-    public final JTextField usernameField = new JTextField("Enter your username", 20);
+    
     
     // Initialises Buttons
-    private final JButton submitButton = new JButton("Submit");
-    private final JButton quitButton = new JButton("Quit");
+
     // Potentially could have the boxes as buttons?
     public final JButton boxButton = new JButton();
    
@@ -39,28 +31,14 @@ public class DOND_View extends JFrame {
         setTitle("Deal or No Deal");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1090);
-        
-        startPanel.add(headingText);
-        startPanel.add(subHeadingText);
-        startPanel.add(usernameField);
-        startPanel.add(submitButton);
-        startPanel.add(quitButton);
-        
-        add(startPanel);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+                
+        setContentPane(startScreen);
     }
-    
-   
-
     
     // Game Screen
     public void gameScreen(){
         getContentPane().removeAll();
-        
-        headingText.setText("Deal or No Deal?");
-        gameScreenPanel.add(headingText);
-        gameScreenPanel.add(quitButton);
-        add(gameScreenPanel);
-        
         revalidate();
         repaint();
         
@@ -68,30 +46,28 @@ public class DOND_View extends JFrame {
     
     // Screen is shown if the player wins
     public void winScreen(){
-        getContentPane().removeAll();
-        winScreenPanel.add(headingText);
-        winScreenPanel.add(subHeadingText);
-        
+        getContentPane().removeAll(); 
         revalidate();
         repaint();
     }
     
     // Screen is shown if the player loses
     public void loseSCreen(){
-        getContentPane().removeAll();
-        loseScreenPanel.add(headingText);
-        loseScreenPanel.add(subHeadingText);
-        
+        getContentPane().removeAll();   
         revalidate();
         repaint();
         
     }
     
+    public StartScreen getStartScreen() {
+        return startScreen;
+    }
+    
     // Contains all the components that require actions listeners
     public void addActionListener(ActionListener listener) {
-        this.submitButton.addActionListener(listener);
+        startScreen.submitButton.addActionListener(listener);
         this.boxButton.addActionListener(listener);
-        this.quitButton.addActionListener(listener);
+        startScreen.quitButton.addActionListener(listener);
     }
     
 }

@@ -34,7 +34,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         switch(command){
             
             case "Submit":
-                String username = view.usernameField.getText();
+                String username = view.getStartScreen().usernameField.getText();
                 model.notifyUserNameEntered(username);
                 break;
             
@@ -46,7 +46,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 break;
                 
             case "Quit":
-                model.notifyGameEnded(player);
+                model.notifyGameEnded();
                 break;
                 
             default:
