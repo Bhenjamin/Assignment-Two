@@ -4,7 +4,9 @@
  */
 package view;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
+import model.*;
 
 /**
  *
@@ -15,6 +17,7 @@ public class DOND_View extends JFrame {
     
     // Intialising classes that handle the different screens
     private final StartScreen startScreen = new StartScreen();
+    private final LeaderboardScreen leaderScreen = new LeaderboardScreen();
     
     // Initialises Labels - move to GameScreen class later
     private final JLabel bankerOffer = new JLabel();
@@ -32,13 +35,26 @@ public class DOND_View extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1090);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-                
+        
+        // Switch to start screen after setting up frame
+        startScreen();
+        
+    }
+    
+    public void startScreen() {
         setContentPane(startScreen);
+        revalidate();
+        repaint();
+    }
+    
+    public void leaderboardScreen(){
+        setContentPane(leaderScreen);
+        revalidate();
+        repaint();
     }
     
     // Game Screen
     public void gameScreen(){
-        getContentPane().removeAll();
         revalidate();
         repaint();
         
@@ -46,7 +62,6 @@ public class DOND_View extends JFrame {
     
     // Screen is shown if the player wins
     public void winScreen(){
-        getContentPane().removeAll(); 
         revalidate();
         repaint();
     }
@@ -59,8 +74,14 @@ public class DOND_View extends JFrame {
         
     }
     
+    // Used when getting the player info for model
     public StartScreen getStartScreen() {
         return startScreen;
+    }
+    
+    // Used when getting the leader info from model
+    public LeaderboardScreen getLeaderboardScreen() {
+        return leaderScreen;
     }
     
     // Contains all the components that require actions listeners
@@ -68,6 +89,8 @@ public class DOND_View extends JFrame {
         startScreen.submitButton.addActionListener(listener);
         this.boxButton.addActionListener(listener);
         startScreen.quitButton.addActionListener(listener);
+        startScreen.leaderboardButton.addActionListener(listener);
+        leaderScreen.backButton.addActionListener(listener);
     }
     
 }

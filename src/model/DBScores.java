@@ -97,12 +97,16 @@ public class DBScores {
     
     public ArrayList<Player> getLeaderBoard(){
         ArrayList<Player> leaderBoardPlayers = getAllPlayers();
-        int index = leaderBoardPlayers.size();
         
-        while(leaderBoardPlayers.size() < 10){
-            leaderBoardPlayers.remove(index);
-            index--;
+        while(leaderBoardPlayers.size() > 10){
+            leaderBoardPlayers.remove(leaderBoardPlayers.size()-1);
         }
+        
+        // If is less than ten players the list will fill with placeholders
+        while(leaderBoardPlayers.size() < 10){
+            leaderBoardPlayers.add(new Player("No Player Yet", 0));
+        }
+            
         return leaderBoardPlayers;
     }
     

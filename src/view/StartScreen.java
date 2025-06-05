@@ -15,6 +15,7 @@ public class StartScreen extends JPanel {
     
     
     public final JTextField usernameField = new JTextField("Enter a username to begin", 20);
+    public final JButton leaderboardButton = new JButton("See Leaderboard");
     public final JButton submitButton = new JButton("Submit");
     public final JButton quitButton = new JButton("Quit");
     
@@ -34,7 +35,7 @@ public class StartScreen extends JPanel {
         
         submitButton.setFont(FontManager.BUTTON);
         quitButton.setFont(FontManager.BUTTON);
-        
+        leaderboardButton.setFont(FontManager.BUTTON);
         
         // Heading Panel Layout
         JPanel headingPanel = new JPanel();
@@ -43,12 +44,20 @@ public class StartScreen extends JPanel {
         headingPanel.add(subHeadingText,BorderLayout.SOUTH);
         
         // Centre Panel Layout
-        JPanel centrePanel = new JPanel(new GridBagLayout());
-        centrePanel.add(usernameField);
+        JPanel centrePanel = new JPanel(new FlowLayout());
+        
+        JPanel usernamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        usernamePanel.add(usernameField);
+        
+        JPanel submitPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        submitPanel.add(submitButton);
+        
+        centrePanel.add(usernamePanel,BorderLayout.NORTH);
+        centrePanel.add(submitPanel,BorderLayout.SOUTH);
         
         // Button Panel Layout
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(submitButton);
+        buttonPanel.add(leaderboardButton);
         buttonPanel.add(quitButton);
         
         // Adds the components to the JPanel and set layout positions
