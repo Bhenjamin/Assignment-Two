@@ -26,7 +26,7 @@ public class DOND_Model {
         // Setups database for scores
         this.dbManager = new DBManager();
         this.dbscores = new DBScores(dbManager);
-        dbscores.createScoresTable();
+        // dbscores.createScoresTable();
     }
     
     // Gets Player data

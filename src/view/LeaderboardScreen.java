@@ -9,6 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import model.*;
 
+
+
 /**
  *
  * @author benma
@@ -41,17 +43,12 @@ public class LeaderboardScreen extends JPanel{
         headingPanel.add(headingText,BorderLayout.NORTH);
         
         // Centre Panel Layout
-        JPanel centrePanel = new JPanel(new BorderLayout());
+        JPanel centrePanel = new JPanel(new GridBagLayout());
         
         // Adds the player data to a JList to be adding on screen using a ScrollPane
         JList<String> playerJList = new JList<>(playerListModel);
         playerJList.setFont(FontManager.SUBHEADER);
-        JScrollPane scrollPane = new JScrollPane(playerJList);
-        
-        // Sizing the scrollPane
-        scrollPane.setPreferredSize(new Dimension(400, 400));
-        
-        centrePanel.add(scrollPane);
+        centrePanel.add(playerJList);
         
         
         // Button Panel Layout

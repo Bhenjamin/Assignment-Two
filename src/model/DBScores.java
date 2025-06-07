@@ -29,8 +29,6 @@ public class DBScores {
 
         try (Statement table = conn.createStatement();) {
 
-            dropATableIfExists(tableName);
-
             String tableCategories = ("CREATE TABLE " + tableName + " "
                     + "(NAME VARCHAR(50), SCORE INT)");
 
