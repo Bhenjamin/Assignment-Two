@@ -29,8 +29,6 @@ public class DBScores {
 
         try (Statement table = conn.createStatement();) {
 
-            dropATableIfExists(tableName);
-
             String tableCategories = ("CREATE TABLE " + tableName + " "
                     + "(NAME VARCHAR(50), SCORE INT)");
 
@@ -60,9 +58,13 @@ public class DBScores {
     public void newPlayerEntry(Player player) {
         System.out.println("Player data entered sucessfully");
         String sql = "INSERT INTO SCORESTABLE (NAME, SCORE) VALUES (?,?)";
+        
+        String playerName = player.getUsername();
+        int playerScore = player.getOfferTaken();
+        
         try (PreparedStatement pstmt = conn.prepareStatement(sql);) {
-            pstmt.setString(1, player.getUsername());
-            pstmt.setInt(2, player.getOfferTaken());
+            pstmt.setString(1, playerName);
+            pstmt.setInt(2, playerScore);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -93,12 +95,16 @@ public class DBScores {
     
     public ArrayList<Player> getLeaderBoard(){
         ArrayList<Player> leaderBoardPlayers = getAllPlayers();
-        int index = leaderBoardPlayers.size();
         
-        while(leaderBoardPlayers.size() < 10){
-            leaderBoardPlayers.remove(index);
-            index--;
+        while(leaderBoardPlayers.size() > 10){
+            leaderBoardPlayers.remove(leaderBoardPlayers.size()-1);
         }
+        
+        // If is less than ten players the list will fill with placeholders
+        while(leaderBoardPlayers.size() < 10){
+            leaderBoardPlayers.add(new Player("No Player Yet", 0));
+        }
+            
         return leaderBoardPlayers;
     }
     

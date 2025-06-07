@@ -26,7 +26,7 @@ public class DOND_Model {
         // Setups database for scores
         this.dbManager = new DBManager();
         this.dbscores = new DBScores(dbManager);
-        dbscores.createScoresTable();
+        // dbscores.createScoresTable();
     }
     
     // Gets Player data
@@ -60,12 +60,22 @@ public class DOND_Model {
         }
     }
     
-    public void notifyGameEnded(Player player) {
-        System.out.println("Game has ended");
-        dbscores.newPlayerEntry(getPlayer());
+    public void notifyGameEnded() {
+        // Won't add a new entry to database if player is never created
+        if(player != null){
+            dbscores.newPlayerEntry(getPlayer());
+        }
         
         for (GameChangeListener listener : listeners) {
             listener.onGameEnded(player);
+        }
+    }
+    
+    // Called when player openes the leaderboard screen
+    public void notifyLeaderboardOpened(){
+        ArrayList<Player> leaderBoardPlayers = dbscores.getLeaderBoard();
+        for (GameChangeListener listener : listeners) {
+            listener.onLeaderboardOpened(leaderBoardPlayers);
         }
     }
     

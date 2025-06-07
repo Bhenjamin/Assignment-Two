@@ -38,6 +38,7 @@ public final class DBManager {
             System.out.println("Connection Successful");
         }catch(SQLException e){
             System.err.println("SQLException: "+e.getMessage());
+            e.printStackTrace();
         }
     }
 

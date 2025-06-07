@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-
+import java.util.ArrayList;
 /**
  *
  * @author benma
@@ -13,4 +13,5 @@ public interface GameChangeListener {
     void onBoxClicked(int boxNumber);
     void onRoundEnded(int bankerOffer);
     void onGameEnded(Player player);
+    void onLeaderboardOpened(ArrayList<Player> topPlayers);
 }

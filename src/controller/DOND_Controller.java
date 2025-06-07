@@ -4,6 +4,7 @@
  */
 package controller;
 import java.awt.event.*;
+import java.util.ArrayList;
 import model.*;
 import view.DOND_View;
 /**
@@ -34,7 +35,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         switch(command){
             
             case "Submit":
-                String username = view.usernameField.getText();
+                String username = view.getStartScreen().usernameField.getText();
                 model.notifyUserNameEntered(username);
                 break;
             
@@ -46,11 +47,19 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 break;
                 
             case "Quit":
-                model.notifyGameEnded(player);
+                model.notifyGameEnded();
+                break;
+                
+            case "Back":
+                view.startScreen();
+                break;
+                
+            case "See Leaderboard":
+                model.notifyLeaderboardOpened();
                 break;
                 
             default:
-                System.exit(0);
+                System.err.println("Incorrect Component Name Assigned");
                 break;
         }
     }
@@ -59,7 +68,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     public void onUserNameEntered(String username) {
         // After Player is created in model
         // Switch to the main game
-        view.gameScreen();      
+        view.gameScreen();
     }
 
     @Override
@@ -75,6 +84,16 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     @Override
     public void onGameEnded(Player player) {
         System.exit(0);
+    }
+    
+    @Override
+    public void onLeaderboardOpened(ArrayList<Player> topPlayers) {
+        // Updates the model
+        view.getLeaderboardScreen().updateLeaderboard(topPlayers);
+        // After leaderboard is updated in model, switch to screen
+        view.leaderboardScreen();
+        
+        
     }
     
     
