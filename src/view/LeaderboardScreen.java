@@ -19,6 +19,7 @@ public class LeaderboardScreen extends JPanel{
     
     public JLabel leaderBoardPlayers = new JLabel();
     public final JButton backButton = new JButton("Back");
+    public final JButton resetButton = new JButton("Reset Leaderboard");
     private DefaultListModel<String> playerListModel;
     
     public LeaderboardScreen(){
@@ -33,9 +34,8 @@ public class LeaderboardScreen extends JPanel{
         // Sets the fonts using custom FontManager class
         headingText.setFont(FontManager.HEADER);
         leaderBoardPlayers.setFont(FontManager.TEXT_FIELD);
-        
         backButton.setFont(FontManager.BUTTON);
-        
+        resetButton.setFont(FontManager.BUTTON);
         
         // Heading Panel Layout
         JPanel headingPanel = new JPanel();
@@ -53,6 +53,7 @@ public class LeaderboardScreen extends JPanel{
         
         // Button Panel Layout
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(resetButton);
         buttonPanel.add(backButton);
         
         // Adds the components to the JPanel and set layout positions

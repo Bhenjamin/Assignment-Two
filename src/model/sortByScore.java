@@ -12,6 +12,7 @@ public class sortByScore implements Comparator<Player>{
     // Used for seeing which players should go one the leaderboard
     @Override
     public int compare(Player a, Player b){
-        return a.getOfferTaken() - b.getOfferTaken();
+        // Sorts highest to lowest
+        return b.getOfferTaken() - a.getOfferTaken();
     }
 }

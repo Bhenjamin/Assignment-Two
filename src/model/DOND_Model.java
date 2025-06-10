@@ -71,6 +71,14 @@ public class DOND_Model {
         }
     }
     
+    // Resets the leaderboard making them all filler values
+    public void resetLeaderboard(String tablename){
+        dbscores.dropATableIfExists(tablename);
+        dbscores.createScoresTable();
+        // Updates the leaderboard screen view
+        notifyLeaderboardOpened();
+    }
+    
     // Called when player openes the leaderboard screen
     public void notifyLeaderboardOpened(){
         ArrayList<Player> leaderBoardPlayers = dbscores.getLeaderBoard();

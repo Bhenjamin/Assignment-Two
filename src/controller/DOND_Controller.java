@@ -58,6 +58,10 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 model.notifyLeaderboardOpened();
                 break;
                 
+            case "Reset Leaderboard":
+                model.resetLeaderboard("SCORESTABLE");
+                break;
+                
             default:
                 System.err.println("Incorrect Component Name Assigned");
                 break;

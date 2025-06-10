@@ -91,6 +91,7 @@ public class DOND_View extends JFrame {
         startScreen.quitButton.addActionListener(listener);
         startScreen.leaderboardButton.addActionListener(listener);
         leaderScreen.backButton.addActionListener(listener);
+        leaderScreen.resetButton.addActionListener(listener);
     }
     
 }
