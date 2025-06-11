@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package view;
-import java.awt.GridLayout;
-import model.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -59,20 +58,31 @@ public class DOND_View extends JFrame {
     // Game Screen
     public void gameScreen(){
         getContentPane().removeAll();
+        gameScreenPanel.removeAll();
+        
+        gameScreenPanel.setLayout(new BorderLayout(20, 20));
         
         headingText.setText("Deal or No Deal?");
-        gameScreenPanel.removeAll();
-        gameScreenPanel.setLayout(new GridLayout(4, 5, 10, 10));
-        gameScreenPanel.add(headingText);
+        headingText.setHorizontalAlignment(SwingConstants.CENTER);
+        gameScreenPanel.add(headingText, BorderLayout.NORTH);
         
+        JPanel boxGrid = new JPanel(new GridLayout(5, 5, 25, 25));
         boxButton.clear();
         for (int i = 1; i <= 25; i++)
         {
             JButton button = new JButton("Box "+i);
             button.setActionCommand("Box "+i);
             boxButton.add(button);
-            gameScreenPanel.add(button);
+            boxGrid.add(button);
         }
+        
+        
+        JPanel centerWrapper = new JPanel();
+        centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
+        centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100)); // Top, left, bottom, right padding
+        centerWrapper.add(boxGrid);
+
+        gameScreenPanel.add(centerWrapper, BorderLayout.CENTER);
         
         add(gameScreenPanel);
         
