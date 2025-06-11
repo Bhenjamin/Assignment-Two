@@ -37,7 +37,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
             case "Submit":
                 String username = view.usernameField.getText();
                 model.notifyUserNameEntered(username);
-                view.gameScreen();
+                view.gameScreen(model.getBoxModel());
                 view.addActionListener(this);
                 break;
             
@@ -57,6 +57,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     public void onBoxClicked(int boxNumber) {
         JButton boxButton = view.getBoxButtons().get(boxNumber);
         Box openBox = model.getBoxModel().getBoxList().get(boxNumber);
+        model.getBoxModel().getBoxList().get(boxNumber).open();
         
         // Update button
         boxButton.setEnabled(false);

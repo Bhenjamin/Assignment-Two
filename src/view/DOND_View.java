@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import model.BoxModel;
 
 /**
  *
@@ -56,7 +57,8 @@ public class DOND_View extends JFrame {
     }
     
     // Game Screen
-    public void gameScreen(){
+    public void gameScreen(BoxModel boxModel){
+        boxButton.clear();
         getContentPane().removeAll();
         gameScreenPanel.removeAll();
         
@@ -67,11 +69,24 @@ public class DOND_View extends JFrame {
         gameScreenPanel.add(headingText, BorderLayout.NORTH);
         
         JPanel boxGrid = new JPanel(new GridLayout(5, 5, 25, 25));
-        boxButton.clear();
-        for (int i = 1; i <= 25; i++)
+        
+        ArrayList<model.Box> boxes = boxModel.getBoxList();
+        
+        for (int i = 0; i < 25; i++)
         {
-            JButton button = new JButton("Box "+i);
-            button.setActionCommand("Box "+i);
+            model.Box box = boxes.get(i);
+            JButton button = new JButton();
+            
+            if (box.isOpen())
+            {
+                button.setEnabled(false);
+                button.setText(String.valueOf(box.getValue()));
+                button.setBackground(Color.DARK_GRAY);
+            } else {
+                button.setText("Box "+String.valueOf(i + 1));
+                button.setActionCommand("Box " + (i + 1));
+            }
+            
             boxButton.add(button);
             boxGrid.add(button);
         }
@@ -79,7 +94,7 @@ public class DOND_View extends JFrame {
         
         JPanel centerWrapper = new JPanel();
         centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
-        centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100)); // Top, left, bottom, right padding
+        centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
         centerWrapper.add(boxGrid);
 
         gameScreenPanel.add(centerWrapper, BorderLayout.CENTER);
