@@ -11,10 +11,11 @@ package model;
  */
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Random;
 
 public class BoxModel {
     private ArrayList<Box> boxList;
+    private Random rand = new Random();
     
     
     public BoxModel(){
@@ -36,6 +37,8 @@ public class BoxModel {
         for (Integer value : values) {
             boxList.add(new Box(value));
         }
+        
+        boxList.get(rand.nextInt(25)).userBox();
 
         // Randomises the order of the money in boxes
         Collections.shuffle(boxList);

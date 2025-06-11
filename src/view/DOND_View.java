@@ -82,6 +82,10 @@ public class DOND_View extends JFrame {
                 button.setEnabled(false);
                 button.setText(String.valueOf(box.getValue()));
                 button.setBackground(Color.DARK_GRAY);
+            } else if (box.isUserBox()) {
+                button.setText("Your Box");
+                button.setBackground(Color.GRAY);
+                button.setForeground(Color.WHITE);
             } else {
                 button.setText("Box "+String.valueOf(i + 1));
                 button.setActionCommand("Box " + (i + 1));

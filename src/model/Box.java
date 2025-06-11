@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Box {
     private int value;
     private boolean isOpened;
+    private boolean userBox = false;
     
     // Box Constructor
     public Box(int value){
@@ -35,5 +36,13 @@ public class Box {
 
     public void setValue(int value) {
         this.value = value;
+    }
+    
+    public void userBox() {
+        this.userBox = true;
+    }
+    
+    public boolean isUserBox() {
+        return userBox;
     }
 }
