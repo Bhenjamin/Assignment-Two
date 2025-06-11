@@ -14,5 +14,5 @@ public class FontManager {
     public static final Font HEADER = new Font("SansSerif", Font.BOLD, 32);
     public static final Font SUBHEADER = new Font("SansSerif", Font.PLAIN, 24);
     public static final Font BUTTON = new Font("SansSerif", Font.PLAIN, 16);
-    public static final Font TEXT_FIELD = new Font("SansSerif", Font.PLAIN, 12);
+    public static final Font TEXT_FIELD = new Font("SansSerif", Font.PLAIN, 26);
 }

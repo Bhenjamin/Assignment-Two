@@ -47,6 +47,13 @@ public class DOND_Model {
             listener.onUserNameEntered(username);
         }
     }
+    
+    public void notifyonPlayerSearch(String playerName){
+        Player searchedPlayer = dbscores.getPlayer(playerName);
+        for (GameChangeListener listener : listeners) {
+            listener.onPlayerSearch(searchedPlayer);
+        }
+    }
 
     public void notifyBoxClicked(int boxNumber) {
         for (GameChangeListener listener : listeners) {
@@ -69,6 +76,14 @@ public class DOND_Model {
         for (GameChangeListener listener : listeners) {
             listener.onGameEnded(player);
         }
+    }
+    
+    // Resets the leaderboard making them all filler values
+    public void resetLeaderboard(String tablename){
+        dbscores.dropATableIfExists(tablename);
+        dbscores.createScoresTable();
+        // Updates the leaderboard screen view
+        notifyLeaderboardOpened();
     }
     
     // Called when player openes the leaderboard screen

@@ -57,7 +57,6 @@ public class DOND_View extends JFrame {
     public void gameScreen(){
         revalidate();
         repaint();
-        
     }
     
     // Screen is shown if the player wins
@@ -79,7 +78,7 @@ public class DOND_View extends JFrame {
         return startScreen;
     }
     
-    // Used when getting the leader info from model
+    // Used when getting the leaderboard info from model
     public LeaderboardScreen getLeaderboardScreen() {
         return leaderScreen;
     }
@@ -90,7 +89,11 @@ public class DOND_View extends JFrame {
         this.boxButton.addActionListener(listener);
         startScreen.quitButton.addActionListener(listener);
         startScreen.leaderboardButton.addActionListener(listener);
+        
         leaderScreen.backButton.addActionListener(listener);
+        leaderScreen.resetButton.addActionListener(listener);
+        leaderScreen.searchButton.addActionListener(listener);
+        leaderScreen.returnButton.addActionListener(listener);
     }
     
 }
