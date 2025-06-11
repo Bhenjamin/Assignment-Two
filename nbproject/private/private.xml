@@ -4,15 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/view/LeaderboardScreen.java</file>
-            <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/model/GameChangeListener.java</file>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/view/FontManager.java</file>
+            <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/model/GameChangeListener.java</file>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/view/DOND_View.java</file>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/controller/Main.java</file>
-            <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/model/DBScores.java</file>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/controller/DOND_Controller.java</file>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/model/DOND_Model.java</file>
             <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/view/StartScreen.java</file>
-            <file>file:/C:/Users/benma/Documents/DealNoDealGUI/src/model/OldScores.java</file>
         </group>
     </open-files>
 </project-private>
