@@ -14,4 +14,5 @@ public interface GameChangeListener {
     void onRoundEnded(int bankerOffer);
     void onGameEnded(Player player);
     void onLeaderboardOpened(ArrayList<Player> topPlayers);
+    void onPlayerSearch(Player playerName);
 }

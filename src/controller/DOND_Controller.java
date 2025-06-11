@@ -62,6 +62,18 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 model.resetLeaderboard("SCORESTABLE");
                 break;
                 
+            case "Search":
+                String playerName = view.getLeaderboardScreen().playerSearch.getText();
+                model.notifyonPlayerSearch(playerName);
+                break;
+                
+            case "Return to Leaderboard":     
+                // Refreshes the leaderboard back to original state
+                model.notifyLeaderboardOpened();
+                view.getLeaderboardScreen().switchButtonLayoutDefault();
+                view.leaderboardScreen();
+                break;
+                
             default:
                 System.err.println("Incorrect Component Name Assigned");
                 break;
@@ -97,7 +109,16 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         // After leaderboard is updated in model, switch to screen
         view.leaderboardScreen();
         
-        
+    }
+
+    @Override
+    public void onPlayerSearch(Player playerName) {
+        ArrayList searchedPlayer = new ArrayList<>();
+        searchedPlayer.add(playerName);
+        // Changes the JList to show the searched Player
+        view.getLeaderboardScreen().updateLeaderboard(searchedPlayer);
+        // Changes the button layout
+        view.getLeaderboardScreen().switchButtonLayoutWhenSearching();
     }
     
     

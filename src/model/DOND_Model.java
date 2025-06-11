@@ -47,6 +47,13 @@ public class DOND_Model {
             listener.onUserNameEntered(username);
         }
     }
+    
+    public void notifyonPlayerSearch(String playerName){
+        Player searchedPlayer = dbscores.getPlayer(playerName);
+        for (GameChangeListener listener : listeners) {
+            listener.onPlayerSearch(searchedPlayer);
+        }
+    }
 
     public void notifyBoxClicked(int boxNumber) {
         for (GameChangeListener listener : listeners) {
