@@ -66,4 +66,7 @@ public class DOND_Model {
         return this.boxModel;
     }
     
+    public Player getPlayer() {
+        return this.player;
+    }
 }

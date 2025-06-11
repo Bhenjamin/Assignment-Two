@@ -28,7 +28,7 @@ public class Banker {
 
         for(int i = 0; i < boxList.size(); i++){
             // Averages box only if has not been opened
-            if (!boxList.get(i).isOpened())
+            if (!boxList.get(i).isOpen())
             {
                 avg += boxList.get(i).getValue();
             }

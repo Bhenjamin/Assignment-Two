@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import model.BoxModel;
+import model.Player;
 
 /**
  *
@@ -82,7 +83,7 @@ public class DOND_View extends JFrame {
                 button.setEnabled(false);
                 button.setText(String.valueOf(box.getValue()));
                 button.setBackground(Color.DARK_GRAY);
-            } else if (box.isUserBox()) {
+            } else if (model.Player.getBox() == i+1) {
                 button.setText("Your Box");
                 button.setBackground(Color.GRAY);
                 button.setForeground(Color.WHITE);

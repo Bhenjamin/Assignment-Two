@@ -15,18 +15,18 @@ public class Player {
     // Initialising variables
     private static final Random rand = new Random();
     private String username;
-    private final int box;
+    private static int box;
     private int offerTaken;
     
     // Player constructor
     public Player()
     {
         this.username = "";
-        this.box = rand.nextInt(25);
+        this.box = rand.nextInt(25)+1;
         this.offerTaken = 0;
     }
 
-    public int getBox() {
+    public static int getBox() {
         return box;
     }
 
