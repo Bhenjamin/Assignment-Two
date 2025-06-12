@@ -17,6 +17,7 @@ public class Banker {
     private final Random rand = new Random();
     private int OfferCounter = 10;
     private int round = 1;
+    private int offer = 0;
     
     public Banker() {}
     // Gets the mean of remaining boxes
@@ -36,7 +37,7 @@ public class Banker {
     }
     
     // Calcualates the bank offer avg - sum proportional to the avg
-    public int bankerOffer(ArrayList<Box> boxList)
+    public void bankerOffer(ArrayList<Box> boxList)
     {
         double avg = getAverage(boxList); 
         int random = 0;
@@ -55,8 +56,8 @@ public class Banker {
         while (random >= avg) {
             random -= rand.nextInt(500);
         }
-
-        return (int)avg-random;
+        
+        offer = (int)avg-random;
     }
     
     public int getOfferCounter() {
@@ -85,5 +86,9 @@ public class Banker {
         {
             return false;
         }
+    }
+    
+    public int getOffer() {
+        return this.offer;
     }
 }

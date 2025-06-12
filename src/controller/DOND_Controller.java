@@ -40,6 +40,14 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 view.gameScreen(model.getBoxModel(), model.getBank(), model.getPlayer());
                 view.addActionListener(this);
                 break;
+            case "Deal":
+                model.getPlayer().setOfferTaken(model.getBank().getOffer());
+                int playerBox = model.getBoxModel().getBoxList().get(model.getPlayer().getBox()-1).getValue();
+                if (model.getPlayer().getOfferTaken() >= playerBox)
+                {
+                    view.winScreen(model.getPlayer());
+                } else view.loseScreen(model.getPlayer(), model.getBank(), model.getBoxModel());
+                break;
             case "No Deal":
                 if (!(model.getBank().getRound() == 6))
                 {
@@ -53,7 +61,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                     model.notifyBoxClicked(boxNum-1);
                     if (model.getBank().getRound() == 5)
                     {
-                        model.getPlayer().setOfferTaken(model.getBoxModel().getBoxList().get(model.getPlayer().getBox()).getValue());
+                        model.getPlayer().setOfferTaken(model.getBoxModel().getBoxList().get(model.getPlayer().getBox()-1).getValue());
                         view.winScreen(model.getPlayer());
                         view.addActionListener(this);
                     }

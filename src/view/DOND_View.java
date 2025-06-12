@@ -65,8 +65,8 @@ public class DOND_View extends JFrame {
         headingText.removeAll();
         
         dealOrNoDealPanel.setLayout(new BorderLayout(20, 20));
-        
-        headingText.setText("Bank Offers: "+bank.bankerOffer(boxModel.getBoxList()));
+        bank.bankerOffer(boxModel.getBoxList());
+        headingText.setText("Bank Offers: "+bank.getOffer());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
         headingText.setHorizontalAlignment(SwingConstants.CENTER);
         dealOrNoDealPanel.add(headingText, BorderLayout.NORTH);
@@ -134,7 +134,7 @@ public class DOND_View extends JFrame {
                 button.setEnabled(false);
                 button.setText(String.valueOf(boxModel.getBoxList().get(i).getValue()));
                 button.setBackground(Color.DARK_GRAY);
-            } else if (player.getBox() == i+1) {
+            } else if (player.getBox()-1 == i+1) {
                 button.setText("Your Box");
                 button.setBackground(Color.GRAY);
                 button.setForeground(Color.WHITE);
@@ -183,14 +183,26 @@ public class DOND_View extends JFrame {
     }
     
     // Screen is shown if the player loses
-    public void loseSCreen(){
+    public void loseScreen(Player player, Banker bank, BoxModel box){
+        boxButton.clear();
         getContentPane().removeAll();
-        loseScreenPanel.add(headingText);
-        loseScreenPanel.add(subHeadingText);
+        gameScreenPanel.removeAll();
+        winScreenPanel.removeAll();
+        headingText.removeAll();
         
+        loseScreenPanel.setLayout(new BorderLayout(20, 20));
+        
+        headingText.setText("You won "+player.getOfferTaken() + 
+                "\n" + (bank.getOffer()-player.getOfferTaken()) +
+                "less than your box of " +
+                box.getBoxList().get(player.getBox()-1).getValue());
+        headingText.setFont(new Font("Arial", Font.BOLD, 32));
+        
+        loseScreenPanel.add(headingText, BorderLayout.CENTER);
+        
+        add(loseScreenPanel);
         revalidate();
         repaint();
-        
     }
     
     // Contains all the components that require actions listeners
