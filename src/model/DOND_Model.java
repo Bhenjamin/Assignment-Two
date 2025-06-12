@@ -17,8 +17,10 @@ public class DOND_Model {
     private DBManager dbManager;
     private DBScores dbscores;
     private Player player;
+    private Banker bank;
     
     public DOND_Model(){
+        this.bank = new Banker();
         // Used when manipulating boxes 
         this.boxModel = new BoxModel();
         // Sets up boxes
@@ -28,12 +30,7 @@ public class DOND_Model {
         this.dbscores = new DBScores(dbManager);
         // dbscores.createScoresTable();
     }
-    
-    // Gets Player data
-    public Player getPlayer() {
-        return player;
-    }
-    
+
     public void addGameListener(GameChangeListener listener) {
         listeners.add(listener);
     }
@@ -41,11 +38,12 @@ public class DOND_Model {
     public void notifyUserNameEntered(String username) {
         // Initilises a new Player object after username
         // Has been submited
-        this.player = new Player(username, 0);
+        this.player = new Player (username, -1);
         // Notifies the classes
         for (GameChangeListener listener : listeners) {
             listener.onUserNameEntered(username);
         }
+        //
     }
     
     public void notifyonPlayerSearch(String playerName){
@@ -56,6 +54,10 @@ public class DOND_Model {
     }
 
     public void notifyBoxClicked(int boxNumber) {
+        Box box = boxModel.getBoxList().get(boxNumber);
+        if (box.isOpen()) return;
+        
+        box.open();
         for (GameChangeListener listener : listeners) {
             listener.onBoxClicked(boxNumber);
         }
@@ -99,11 +101,16 @@ public class DOND_Model {
 //        notifyRoundEnded(offer);
     }
     
-    
-    public void openBox(int index){
-        boxModel.getBoxList().get(index).open();
-        // Notifies the view that a box has been opened
-        notifyBoxClicked(index);
+
+    public BoxModel getBoxModel() {
+        return this.boxModel;
     }
     
+    public Player getPlayer() {
+        return this.player;
+    }
+    
+    public Banker getBank() {
+        return this.bank;
+    }
 }

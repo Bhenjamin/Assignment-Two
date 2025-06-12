@@ -15,14 +15,15 @@ public class Player {
     // Initialising variables
     private static final Random rand = new Random();
     private String username;
-    private final int box;
+    private int box;
     private int offerTaken;
 
     // Player constructor
-    public Player(String username, int offerTaken) {
+    public Player(String username, int offer)
+    {
         this.username = username;
-        this.box = rand.nextInt(25);
-        this.offerTaken = offerTaken;
+        this.box = rand.nextInt(25)+1;
+        this.offerTaken = offer;
     }
 
     public int getBox() {

@@ -14,21 +14,20 @@ import java.util.Random;
  */
 
 public class Banker {
-    // References boxList from Model
-    private final ArrayList<Box> boxList;
     private final Random rand = new Random();
+    private int OfferCounter = 10;
+    private int round = 1;
+    private int offer = 0;
     
-    public Banker(ArrayList<Box> boxList) {
-        this.boxList = boxList;
-    }
+    public Banker() {}
     // Gets the mean of remaining boxes
-    public double getAverage()
+    public double getAverage(ArrayList<Box> boxList)
     {
         double avg = 0.0;
 
         for(int i = 0; i < boxList.size(); i++){
             // Averages box only if has not been opened
-            if (!boxList.get(i).isOpened())
+            if (!boxList.get(i).isOpen())
             {
                 avg += boxList.get(i).getValue();
             }
@@ -38,9 +37,9 @@ public class Banker {
     }
     
     // Calcualates the bank offer avg - sum proportional to the avg
-    public int bankerOffer()
+    public void bankerOffer(ArrayList<Box> boxList)
     {
-        double avg = getAverage(); 
+        double avg = getAverage(boxList); 
         int random = 0;
         
         if (avg > 200000)
@@ -57,8 +56,39 @@ public class Banker {
         while (random >= avg) {
             random -= rand.nextInt(500);
         }
-
-        return (int)avg-random;
+        
+        offer = (int)avg-random;
     }
-
+    
+    public int getOfferCounter() {
+        return this.OfferCounter;
+    }
+    
+    public int getRound() {
+        return this.round;
+    }
+    
+    public boolean nextRound() {
+        this.OfferCounter--;
+        if (this.OfferCounter == 0 && this.round != 6)
+        {
+            this.round ++;
+            System.out.println(this.round);
+            
+            
+            if (this.round == 2) this.OfferCounter = 6;
+            if (this.round == 3) this.OfferCounter = 5;
+            if (this.round == 4) this.OfferCounter = 2;
+            if (this.round == 5) this.OfferCounter = 1;
+            if (this.round == 6) return false;
+            return true;
+        } else 
+        {
+            return false;
+        }
+    }
+    
+    public int getOffer() {
+        return this.offer;
+    }
 }

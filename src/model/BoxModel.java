@@ -12,9 +12,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 public class BoxModel {
-    private final ArrayList<Box> boxList;
+    private ArrayList<Box> boxList;
     
     
     public BoxModel(){
@@ -45,6 +44,4 @@ public class BoxModel {
         return boxList;
     }
     
-
-
 }

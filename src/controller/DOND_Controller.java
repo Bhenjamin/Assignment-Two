@@ -3,8 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.Timer;
 import model.*;
 import view.DOND_View;
 /**
@@ -15,7 +18,6 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     
     public DOND_View view;
     public DOND_Model model;
-    private Player player;
 
     
     public DOND_Controller(DOND_View view, DOND_Model model) {
@@ -38,12 +40,22 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 String username = view.getStartScreen().usernameField.getText();
                 model.notifyUserNameEntered(username);
                 break;
-            
-            case "box":
-                int boxNumber = Integer.parseInt(view.boxButton.getText());
-                model.notifyBoxClicked(boxNumber);
                 
-                // Need to update the banker after a certain amount of rounds
+            case "Deal":
+                model.getPlayer().setOfferTaken(model.getBank().getOffer());
+                int playerBox = model.getBoxModel().getBoxList().get(model.getPlayer().getBox()-1).getValue();
+                if (model.getPlayer().getOfferTaken() >= playerBox)
+                {
+                    view.winScreen(model.getPlayer());
+                } else view.loseScreen(model.getPlayer(), model.getBank(), model.getBoxModel());
+                break;
+                
+            case "No Deal":
+                if (!(model.getBank().getRound() == 6))
+                {
+                    view.gameScreen(model.getBoxModel(), model.getBank(), model.getPlayer());
+                    view.addActionListener(this);
+                }
                 break;
                 
             case "Quit":
@@ -74,8 +86,18 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 view.leaderboardScreen();
                 break;
                 
+                
             default:
-                System.err.println("Incorrect Component Name Assigned");
+                if (command.startsWith("Box ")) {
+                    int boxNum = Integer.parseInt(command.substring(4));
+                    model.notifyBoxClicked(boxNum-1);
+                    if (model.getBank().getRound() == 5)
+                    {
+                        model.getPlayer().setOfferTaken(model.getBoxModel().getBoxList().get(model.getPlayer().getBox()-1).getValue());
+                        view.winScreen(model.getPlayer());
+                        view.addActionListener(this);
+                    }
+                }
                 break;
         }
     }
@@ -84,12 +106,54 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     public void onUserNameEntered(String username) {
         // After Player is created in model
         // Switch to the main game
-        view.gameScreen();
+        view.gameScreen(model.getBoxModel(), model.getBank(), model.getPlayer());
+        view.addActionListener(this);
     }
 
     @Override
     public void onBoxClicked(int boxNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        JButton boxButton = view.getBoxButtons().get(boxNumber);
+        Box openBox = model.getBoxModel().getBoxList().get(boxNumber);
+        model.getBoxModel().getBoxList().get(boxNumber).open();
+
+        // Disable all buttons temporarily
+        for (JButton b : view.getBoxButtons()) {
+            b.setEnabled(false);
+        }
+
+        // Update clicked box
+        boxButton.setText(String.valueOf(openBox.getValue()));
+        boxButton.setBackground(Color.DARK_GRAY);
+
+        // Pause for 1 second before continuing
+        Timer timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!model.getBank().nextRound() && model.getBank().getRound()!= 6) {
+                    view.getHeadingText().setText("Please Select " + model.getBank().getOfferCounter() + " Box's");
+
+                    // Re-enable only unopened, unselected boxes
+                    for (int i = 0; i < view.getBoxButtons().size(); i++) {
+                        JButton b = view.getBoxButtons().get(i);
+                        Box box = model.getBoxModel().getBoxList().get(i);
+                        if (!box.isOpen()) {
+                            b.setEnabled(true);
+                        }
+                    }
+
+                } else {
+                    // Transition to Deal or No Deal screen
+                    if (model.getBank().getRound() != 6)
+                    {
+                        view.dealOrNoDeal(model.getBoxModel(), model.getBank());
+                        view.addActionListener(DOND_Controller.this); // Reattach listeners
+                    }
+                }
+            }
+        });
+
+        timer.setRepeats(false);
+        timer.start();
     }
 
     @Override
