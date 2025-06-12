@@ -72,6 +72,8 @@ public class Banker {
         if (this.OfferCounter == 0)
         {
             this.round ++;
+            
+            
             if (this.round == 2) this.OfferCounter = 6;
             if (this.round == 3) this.OfferCounter = 5;
             if (this.round == 4) this.OfferCounter = 2;

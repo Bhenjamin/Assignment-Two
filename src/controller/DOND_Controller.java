@@ -6,6 +6,7 @@ package controller;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.JButton;
+import javax.swing.Timer;
 import model.*;
 import view.DOND_View;
 /**
@@ -40,7 +41,13 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 view.gameScreen(model.getBoxModel(), model.getBank());
                 view.addActionListener(this);
                 break;
-            
+            case "No Deal":
+                if (!(model.getBank().getRound() == 6))
+                {
+                    view.gameScreen(model.getBoxModel(), model.getBank());
+                    view.addActionListener(this);
+                } else {};
+                break;
             default:
                 if (command.startsWith("Box ")) {
                     int boxNum = Integer.parseInt(command.substring(4));
@@ -58,15 +65,42 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         JButton boxButton = view.getBoxButtons().get(boxNumber);
         Box openBox = model.getBoxModel().getBoxList().get(boxNumber);
         model.getBoxModel().getBoxList().get(boxNumber).open();
-        
-        // Update button
-        boxButton.setEnabled(false);
+
+        // Disable all buttons temporarily
+        for (JButton b : view.getBoxButtons()) {
+            b.setEnabled(false);
+        }
+
+        // Update clicked box
         boxButton.setText(String.valueOf(openBox.getValue()));
         boxButton.setBackground(Color.DARK_GRAY);
-        if (!model.getBank().nextRound())
-        {
-            view.getHeadingText().setText("Please Select "+ model.getBank().getOfferCounter() +" Box's");
-        }
+
+        // Pause for 1 second before continuing
+        Timer timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!model.getBank().nextRound()) {
+                    view.getHeadingText().setText("Please Select " + model.getBank().getOfferCounter() + " Box's");
+
+                    // Re-enable only unopened, unselected boxes
+                    for (int i = 0; i < view.getBoxButtons().size(); i++) {
+                        JButton b = view.getBoxButtons().get(i);
+                        Box box = model.getBoxModel().getBoxList().get(i);
+                        if (!box.isOpen()) {
+                            b.setEnabled(true);
+                        }
+                    }
+
+                } else {
+                    // Transition to Deal or No Deal screen
+                    view.dealOrNoDeal(model.getBoxModel(), model.getBank());
+                    view.addActionListener(DOND_Controller.this); // Reattach listeners
+                }
+            }
+        });
+
+        timer.setRepeats(false);
+        timer.start();
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Player {
     {
         this.username = "";
         this.box = rand.nextInt(25)+1;
-        this.offerTaken = 0;
+        this.offerTaken = -1;
     }
 
     public static int getBox() {

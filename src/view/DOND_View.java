@@ -57,6 +57,50 @@ public class DOND_View extends JFrame {
         return boxButton;
     }
     
+    public void dealOrNoDeal(BoxModel boxModel, Banker bank) {
+        boxButton.clear();
+        getContentPane().removeAll();
+        gameScreenPanel.removeAll();
+        
+        gameScreenPanel.setLayout(new BorderLayout(20, 20));
+        
+        headingText.setText("Bank Offers: "+bank.bankerOffer(boxModel.getBoxList()));
+        headingText.setHorizontalAlignment(SwingConstants.CENTER);
+        gameScreenPanel.add(headingText, BorderLayout.NORTH);
+        
+        JPanel dond = new JPanel(new GridLayout(2, 1, 25, 25));
+        
+        for (int i = 1; i <= 2; i++)
+        {
+            
+            JButton button = new JButton();
+            if (i==1)
+            {
+            button.setText("Deal");
+            button.setActionCommand("Deal");
+            }
+            if (i==2)
+            {
+            button.setText("No Deal");
+            button.setActionCommand("No Deal");
+            }
+            boxButton.add(button);
+            dond.add(button);
+        }
+        JPanel centerWrapper = new JPanel();
+        centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
+        centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
+        centerWrapper.add(dond);
+
+        gameScreenPanel.add(centerWrapper, BorderLayout.CENTER);
+        
+        add(gameScreenPanel);
+        
+        revalidate();
+        repaint();
+        
+    }
+    
     // Game Screen
     public void gameScreen(BoxModel boxModel, Banker bank){
         boxButton.clear();
