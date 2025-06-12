@@ -166,7 +166,7 @@ public class DOND_View extends JFrame {
         winScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
         
         replayButton.setFont(FontManager.BUTTON);
-        loseScreenPanel.add(replayButton, BorderLayout.NORTH);
+        winScreenPanel.add(replayButton, BorderLayout.NORTH);
         
         winScreenPanel.add(headingText, BorderLayout.CENTER);
         
@@ -237,6 +237,8 @@ public class DOND_View extends JFrame {
         leaderScreen.resetButton.addActionListener(listener);
         leaderScreen.searchButton.addActionListener(listener);
         leaderScreen.returnButton.addActionListener(listener);
+        
+        replayButton.addActionListener(listener);
     }
     // Used when getting the player info for model
     public StartScreen getStartScreen() {
