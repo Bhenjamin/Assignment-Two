@@ -33,7 +33,7 @@ public class DOND_View extends JFrame {
     private final JButton submitButton = new JButton("Submit");
     public final JButton leaderboardButton = new JButton("See Leaderboard");
     public final JButton quitButton = new JButton("Quit");
-    public final JButton replayButton = new JButton("Replay?");
+    public final JButton homeButton = new JButton("Return to Main Menu");
     
     // The boxes as button lists
     public final ArrayList<JButton> boxButton = new ArrayList<>();
@@ -129,13 +129,8 @@ public class DOND_View extends JFrame {
         centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
         centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
         centerWrapper.add(boxGrid);
-        
-        quitButton.setFont(FontManager.BUTTON);
-        leaderboardButton.setFont(FontManager.BUTTON);
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(leaderboardButton);
-        buttonPanel.add(quitButton);
-        gameScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
+                
+        gameScreenPanel.add(addButtonPanel(), BorderLayout.SOUTH);
 
         gameScreenPanel.add(centerWrapper, BorderLayout.CENTER);
         
@@ -165,10 +160,10 @@ public class DOND_View extends JFrame {
         buttonPanel.add(quitButton);
         winScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
         
-        replayButton.setFont(FontManager.BUTTON);
-        winScreenPanel.add(replayButton, BorderLayout.NORTH);
+        
         
         winScreenPanel.add(headingText, BorderLayout.CENTER);
+        winScreenPanel.add(addButtonPanel(), BorderLayout.SOUTH);
         
         add(winScreenPanel);
         revalidate();
@@ -192,22 +187,27 @@ public class DOND_View extends JFrame {
                 box.getBoxList().get(player.getBox()-1).getValue());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
         
-        quitButton.setFont(FontManager.BUTTON);
-        leaderboardButton.setFont(FontManager.BUTTON);
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(leaderboardButton);
-        buttonPanel.add(quitButton);
-        
-        loseScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
-        
-        replayButton.setFont(FontManager.BUTTON);
-        loseScreenPanel.add(replayButton, BorderLayout.NORTH);
+        loseScreenPanel.add(addButtonPanel());
         
         loseScreenPanel.add(headingText, BorderLayout.CENTER);
         
         add(loseScreenPanel);
         revalidate();
         repaint();
+    }
+    
+    // Used for the button Panel on game screens
+    public JPanel addButtonPanel(){
+        quitButton.setFont(FontManager.BUTTON);
+        leaderboardButton.setFont(FontManager.BUTTON);
+        homeButton.setFont(FontManager.BUTTON);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(homeButton);
+        buttonPanel.add(leaderboardButton);
+        buttonPanel.add(quitButton);
+        
+        return buttonPanel;
     }
     
     // Contains all the components that require actions listeners
@@ -238,7 +238,7 @@ public class DOND_View extends JFrame {
         leaderScreen.searchButton.addActionListener(listener);
         leaderScreen.returnButton.addActionListener(listener);
         
-        replayButton.addActionListener(listener);
+        homeButton.addActionListener(listener);
     }
     // Used when getting the player info for model
     public StartScreen getStartScreen() {
