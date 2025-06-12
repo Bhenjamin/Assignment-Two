@@ -147,7 +147,7 @@ public class DOND_View extends JFrame {
         
         winScreenPanel.setLayout(new BorderLayout(20, 20));
         
-        headingText.setText("You won "+player.getOfferTaken());
+        headingText.setText("You won $"+player.getOfferTaken());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
         
         winScreenPanel.add(headingText, BorderLayout.CENTER);
@@ -167,10 +167,10 @@ public class DOND_View extends JFrame {
         
         loseScreenPanel.setLayout(new BorderLayout(20, 20));
         
-        headingText.setText("You won "+player.getOfferTaken() + 
-                " " + 
+        headingText.setText("You won $"+player.getOfferTaken() + 
+                " $" + 
                 (bank.getOffer()-player.getOfferTaken()) +
-                " less than your box of " +
+                " less than your box of $" +
                 box.getBoxList().get(player.getBox()-1).getValue());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
         

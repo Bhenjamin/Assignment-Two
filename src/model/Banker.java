@@ -24,16 +24,18 @@ public class Banker {
     public double getAverage(ArrayList<Box> boxList)
     {
         double avg = 0.0;
+        double count = 0;
 
         for(int i = 0; i < boxList.size(); i++){
             // Averages box only if has not been opened
             if (!boxList.get(i).isOpen())
             {
                 avg += boxList.get(i).getValue();
+                count++;
             }
         }
         
-        return avg/boxList.size();
+        return avg/count;
     }
     
     // Calcualates the bank offer avg - sum proportional to the avg
