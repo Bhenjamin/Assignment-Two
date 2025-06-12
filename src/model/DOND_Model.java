@@ -15,6 +15,7 @@ public class DOND_Model {
     private Player player;
     private List<GameChangeListener> listeners = new ArrayList<>();
     private BoxModel boxModel;
+    private Banker bank;
     
     public DOND_Model(){
         // initilises Player object 
@@ -23,6 +24,7 @@ public class DOND_Model {
         this.boxModel = new BoxModel();
         // Sets up boxes
         this.boxModel.initialiseBoxes();
+        
     }
     
     public void addGameListener(GameChangeListener listener) {
