@@ -20,6 +20,7 @@ public class DOND_View extends JFrame {
     // Intitalises Panels
     private final JPanel startPanel = new JPanel();
     private final JPanel gameScreenPanel = new JPanel();
+    private final JPanel dealOrNoDealPanel = new JPanel();
     private final JPanel winScreenPanel = new JPanel();
     private final JPanel loseScreenPanel = new JPanel();
     
@@ -60,13 +61,13 @@ public class DOND_View extends JFrame {
     public void dealOrNoDeal(BoxModel boxModel, Banker bank) {
         boxButton.clear();
         getContentPane().removeAll();
-        gameScreenPanel.removeAll();
+        dealOrNoDealPanel.removeAll();
         
-        gameScreenPanel.setLayout(new BorderLayout(20, 20));
+        dealOrNoDealPanel.setLayout(new BorderLayout(20, 20));
         
         headingText.setText("Bank Offers: "+bank.bankerOffer(boxModel.getBoxList()));
         headingText.setHorizontalAlignment(SwingConstants.CENTER);
-        gameScreenPanel.add(headingText, BorderLayout.NORTH);
+        dealOrNoDealPanel.add(headingText, BorderLayout.NORTH);
         
         JPanel dond = new JPanel(new GridLayout(2, 1, 25, 25));
         
@@ -92,9 +93,9 @@ public class DOND_View extends JFrame {
         centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
         centerWrapper.add(dond);
 
-        gameScreenPanel.add(centerWrapper, BorderLayout.CENTER);
+        dealOrNoDealPanel.add(centerWrapper, BorderLayout.CENTER);
         
-        add(gameScreenPanel);
+        add(dealOrNoDealPanel);
         
         revalidate();
         repaint();

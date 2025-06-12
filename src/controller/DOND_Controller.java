@@ -46,7 +46,10 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 {
                     view.gameScreen(model.getBoxModel(), model.getBank());
                     view.addActionListener(this);
-                } else {};
+                } else 
+                {
+                    
+                };
                 break;
             default:
                 if (command.startsWith("Box ")) {
