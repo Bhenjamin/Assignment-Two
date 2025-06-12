@@ -69,16 +69,21 @@ public class Banker {
     
     public boolean nextRound() {
         this.OfferCounter--;
-        if (this.OfferCounter == 0)
+        if (this.OfferCounter == 0 && this.round != 6)
         {
             this.round ++;
+            System.out.println(this.round);
             
             
             if (this.round == 2) this.OfferCounter = 6;
             if (this.round == 3) this.OfferCounter = 5;
             if (this.round == 4) this.OfferCounter = 2;
             if (this.round == 5) this.OfferCounter = 1;
+            if (this.round == 6) return false;
             return true;
-        } else return false;
+        } else 
+        {
+            return false;
+        }
     }
 }

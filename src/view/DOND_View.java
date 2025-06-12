@@ -62,14 +62,16 @@ public class DOND_View extends JFrame {
         boxButton.clear();
         getContentPane().removeAll();
         dealOrNoDealPanel.removeAll();
+        headingText.removeAll();
         
         dealOrNoDealPanel.setLayout(new BorderLayout(20, 20));
         
         headingText.setText("Bank Offers: "+bank.bankerOffer(boxModel.getBoxList()));
+        headingText.setFont(new Font("Arial", Font.BOLD, 32));
         headingText.setHorizontalAlignment(SwingConstants.CENTER);
         dealOrNoDealPanel.add(headingText, BorderLayout.NORTH);
         
-        JPanel dond = new JPanel(new GridLayout(2, 1, 25, 25));
+        JPanel dond = new JPanel(new GridLayout(1, 2, 100, 100));
         
         for (int i = 1; i <= 2; i++)
         {
@@ -78,11 +80,13 @@ public class DOND_View extends JFrame {
             if (i==1)
             {
             button.setText("Deal");
+            button.setFont(new Font("Arial", Font.BOLD, 100));
             button.setActionCommand("Deal");
             }
             if (i==2)
             {
             button.setText("No Deal");
+            button.setFont(new Font("Arial", Font.BOLD, 100));
             button.setActionCommand("No Deal");
             }
             boxButton.add(button);
@@ -103,14 +107,16 @@ public class DOND_View extends JFrame {
     }
     
     // Game Screen
-    public void gameScreen(BoxModel boxModel, Banker bank){
+    public void gameScreen(BoxModel boxModel, Banker bank, Player player){
         boxButton.clear();
         getContentPane().removeAll();
         gameScreenPanel.removeAll();
+        headingText.removeAll();
         
         gameScreenPanel.setLayout(new BorderLayout(20, 20));
         
         headingText.setText("Please Select "+ bank.getOfferCounter() +" Box's");
+        headingText.setFont(new Font("Arial", Font.BOLD, 32));
         headingText.setHorizontalAlignment(SwingConstants.CENTER);
         gameScreenPanel.add(headingText, BorderLayout.NORTH);
         
@@ -126,9 +132,9 @@ public class DOND_View extends JFrame {
             if (box.isOpen())
             {
                 button.setEnabled(false);
-                button.setText(String.valueOf(box.getValue()));
+                button.setText(String.valueOf(boxModel.getBoxList().get(i).getValue()));
                 button.setBackground(Color.DARK_GRAY);
-            } else if (model.Player.getBox() == i+1) {
+            } else if (player.getBox() == i+1) {
                 button.setText("Your Box");
                 button.setBackground(Color.GRAY);
                 button.setForeground(Color.WHITE);
@@ -157,11 +163,21 @@ public class DOND_View extends JFrame {
     }
     
     // Screen is shown if the player wins
-    public void winScreen(){
+    public void winScreen(Player player){
+        boxButton.clear();
         getContentPane().removeAll();
-        winScreenPanel.add(headingText);
-        winScreenPanel.add(subHeadingText);
+        gameScreenPanel.removeAll();
+        winScreenPanel.removeAll();
+        headingText.removeAll();
         
+        winScreenPanel.setLayout(new BorderLayout(20, 20));
+        
+        headingText.setText("You won "+player.getOfferTaken());
+        headingText.setFont(new Font("Arial", Font.BOLD, 32));
+        
+        winScreenPanel.add(headingText, BorderLayout.CENTER);
+        
+        add(winScreenPanel);
         revalidate();
         repaint();
     }

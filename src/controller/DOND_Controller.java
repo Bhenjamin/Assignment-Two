@@ -17,7 +17,6 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     
     public DOND_View view;
     public DOND_Model model;
-    private Player player;
 
     
     public DOND_Controller(DOND_View view, DOND_Model model) {
@@ -38,23 +37,26 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
             case "Submit":
                 String username = view.usernameField.getText();
                 model.notifyUserNameEntered(username);
-                view.gameScreen(model.getBoxModel(), model.getBank());
+                view.gameScreen(model.getBoxModel(), model.getBank(), model.getPlayer());
                 view.addActionListener(this);
                 break;
             case "No Deal":
                 if (!(model.getBank().getRound() == 6))
                 {
-                    view.gameScreen(model.getBoxModel(), model.getBank());
+                    view.gameScreen(model.getBoxModel(), model.getBank(), model.getPlayer());
                     view.addActionListener(this);
-                } else 
-                {
-                    
-                };
+                }
                 break;
             default:
                 if (command.startsWith("Box ")) {
                     int boxNum = Integer.parseInt(command.substring(4));
                     model.notifyBoxClicked(boxNum-1);
+                    if (model.getBank().getRound() == 5)
+                    {
+                        model.getPlayer().setOfferTaken(model.getBoxModel().getBoxList().get(model.getPlayer().getBox()).getValue());
+                        view.winScreen(model.getPlayer());
+                        view.addActionListener(this);
+                    }
                 }
         }
     }
@@ -82,7 +84,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         Timer timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!model.getBank().nextRound()) {
+                if (!model.getBank().nextRound() && model.getBank().getRound()!= 6) {
                     view.getHeadingText().setText("Please Select " + model.getBank().getOfferCounter() + " Box's");
 
                     // Re-enable only unopened, unselected boxes
@@ -96,8 +98,11 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
 
                 } else {
                     // Transition to Deal or No Deal screen
-                    view.dealOrNoDeal(model.getBoxModel(), model.getBank());
-                    view.addActionListener(DOND_Controller.this); // Reattach listeners
+                    if (model.getBank().getRound() != 6)
+                    {
+                        view.dealOrNoDeal(model.getBoxModel(), model.getBank());
+                        view.addActionListener(DOND_Controller.this); // Reattach listeners
+                    }
                 }
             }
         });

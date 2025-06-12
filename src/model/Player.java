@@ -15,7 +15,7 @@ public class Player {
     // Initialising variables
     private static final Random rand = new Random();
     private String username;
-    private static int box;
+    private int box;
     private int offerTaken;
     
     // Player constructor
@@ -26,7 +26,7 @@ public class Player {
         this.offerTaken = -1;
     }
 
-    public static int getBox() {
+    public int getBox() {
         return box;
     }
 
