@@ -19,7 +19,6 @@ public class DOND_View extends JFrame {
     // Intitalises Panels
     private final JPanel startPanel = new JPanel();
     private final JPanel gameScreenPanel = new JPanel();
-    private final JPanel dealOrNoDealPanel = new JPanel();
     private final JPanel winScreenPanel = new JPanel();
     private final JPanel loseScreenPanel = new JPanel();
     // Intialising classes that handle the different screens
@@ -37,6 +36,10 @@ public class DOND_View extends JFrame {
     
     // The boxes as button lists
     public final ArrayList<JButton> boxButton = new ArrayList<>();
+    
+    
+    public final DealOrNoDealScreen dondScreen = new DealOrNoDealScreen();
+    public final GameScreen gameScreen = new GameScreen();
     
    
     // Default Screen - Start Screen
@@ -59,46 +62,9 @@ public class DOND_View extends JFrame {
     public void dealOrNoDeal(BoxModel boxModel, Banker bank) {
         boxButton.clear();
         getContentPane().removeAll();
-        dealOrNoDealPanel.removeAll();
-        headingText.removeAll();
         
-        dealOrNoDealPanel.setLayout(new BorderLayout(20, 20));
-        bank.bankerOffer(boxModel.getBoxList());
-        headingText.setText("Bank Offers: "+bank.getOffer());
-        headingText.setFont(new Font("Arial", Font.BOLD, 32));
-        headingText.setHorizontalAlignment(SwingConstants.CENTER);
-        dealOrNoDealPanel.add(headingText, BorderLayout.NORTH);
-        
-        JPanel dond = new JPanel(new GridLayout(1, 2, 100, 100));
-        
-        for (int i = 1; i <= 2; i++)
-        {
-            
-            JButton button = new JButton();
-            if (i==1)
-            {
-                button.setText("Deal");
-                button.setFont(new Font("Arial", Font.BOLD, 100));
-                button.setActionCommand("Deal");
-            }
-            if (i==2)
-            {
-                button.setText("No Deal");
-                button.setFont(new Font("Arial", Font.BOLD, 100));
-                button.setActionCommand("No Deal");
-            }
-            boxButton.add(button);
-            dond.add(button);
-        }
-        JPanel centerWrapper = new JPanel();
-        centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
-        centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
-        centerWrapper.add(dond);
-
-        dealOrNoDealPanel.add(centerWrapper, BorderLayout.CENTER);
-        
-        add(dealOrNoDealPanel);
-        
+        dondScreen.build(boxModel, bank);
+        add(dondScreen.getPanel());
         revalidate();
         repaint();
     }
@@ -144,7 +110,7 @@ public class DOND_View extends JFrame {
                 button.setEnabled(false);
                 button.setText(String.valueOf(boxModel.getBoxList().get(i).getValue()));
                 button.setBackground(Color.DARK_GRAY);
-            } else if (player.getBox()-1 == i+1) {
+            } else if (player.getBox()-1 == i) {
                 button.setText("Your Box");
                 button.setBackground(Color.GRAY);
                 button.setForeground(Color.WHITE);
@@ -222,6 +188,10 @@ public class DOND_View extends JFrame {
         for (JButton button : boxButton)
         {
             button.addActionListener(listener);
+        }
+        for (int i = 0; i < dondScreen.getBoxButtons().size(); i++)
+        {
+            dondScreen.getBoxButtons().get(i).addActionListener(listener);
         }
 
         startScreen.submitButton.addActionListener(listener);
