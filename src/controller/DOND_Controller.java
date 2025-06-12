@@ -47,7 +47,12 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 if (model.getPlayer().getOfferTaken() >= playerBox)
                 {
                     view.winScreen(model.getPlayer());
-                } else view.loseScreen(model.getPlayer(), model.getBank(), model.getBoxModel());
+                    view.addActionListener(this);
+                } else
+                {
+                    view.loseScreen(model.getPlayer(), model.getBank(), model.getBoxModel());
+                    view.addActionListener(this);
+                }
                 break;
                 
             case "No Deal":
