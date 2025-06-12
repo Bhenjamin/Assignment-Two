@@ -37,7 +37,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
             case "Submit":
                 String username = view.usernameField.getText();
                 model.notifyUserNameEntered(username);
-                view.gameScreen(model.getBoxModel());
+                view.gameScreen(model.getBoxModel(), model.getBank());
                 view.addActionListener(this);
                 break;
             
@@ -63,6 +63,10 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
         boxButton.setEnabled(false);
         boxButton.setText(String.valueOf(openBox.getValue()));
         boxButton.setBackground(Color.DARK_GRAY);
+        if (!model.getBank().nextRound())
+        {
+            view.getHeadingText().setText("Please Select "+ model.getBank().getOfferCounter() +" Box's");
+        }
     }
 
     @Override

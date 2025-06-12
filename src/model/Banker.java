@@ -59,7 +59,7 @@ public class Banker {
         return (int)avg-random;
     }
     
-    public int getOfferCounter (){
+    public int getOfferCounter() {
         return this.OfferCounter;
     }
     

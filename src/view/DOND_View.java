@@ -7,8 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
-import model.BoxModel;
-import model.Player;
+import model.*;
 
 /**
  *
@@ -37,6 +36,7 @@ public class DOND_View extends JFrame {
     
     // The boxes as button lists
     public final ArrayList<JButton> boxButton = new ArrayList<>();
+    
    
     // Default Screen - Start Screen
     public DOND_View(){
@@ -58,14 +58,14 @@ public class DOND_View extends JFrame {
     }
     
     // Game Screen
-    public void gameScreen(BoxModel boxModel){
+    public void gameScreen(BoxModel boxModel, Banker bank){
         boxButton.clear();
         getContentPane().removeAll();
         gameScreenPanel.removeAll();
         
         gameScreenPanel.setLayout(new BorderLayout(20, 20));
         
-        headingText.setText("Deal or No Deal?");
+        headingText.setText("Please Select "+ bank.getOfferCounter() +" Box's");
         headingText.setHorizontalAlignment(SwingConstants.CENTER);
         gameScreenPanel.add(headingText, BorderLayout.NORTH);
         
@@ -141,5 +141,8 @@ public class DOND_View extends JFrame {
             button.addActionListener(listener);
         }
     }
-    
+
+    public JLabel getHeadingText() {
+        return headingText;
+    }
 }

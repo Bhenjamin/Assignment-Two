@@ -24,7 +24,7 @@ public class DOND_Model {
         this.boxModel = new BoxModel();
         // Sets up boxes
         this.boxModel.initialiseBoxes();
-        
+        this.bank = new Banker();
     }
     
     public void addGameListener(GameChangeListener listener) {
@@ -70,5 +70,9 @@ public class DOND_Model {
     
     public Player getPlayer() {
         return this.player;
+    }
+    
+    public Banker getBank() {
+        return this.bank;
     }
 }
