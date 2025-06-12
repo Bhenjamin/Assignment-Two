@@ -16,6 +16,7 @@ import model.*;
 public class GameScreen {
     private final JPanel panel = new JPanel();
     
+    
     private final JLabel headingText = new JLabel();
     private final ArrayList<JButton> boxButton = new ArrayList<>();
     

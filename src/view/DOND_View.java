@@ -25,14 +25,15 @@ public class DOND_View extends JFrame {
     private final StartScreen startScreen = new StartScreen();
     private final LeaderboardScreen leaderScreen = new LeaderboardScreen();
     
-    // Initialises Labels - move to GameScreen class later
-    private final JLabel bankerOffer = new JLabel();
     // Intialises text field
     
     private final JLabel headingText = new JLabel();
     
     // Initialises Buttons
     private final JButton submitButton = new JButton("Submit");
+    public final JButton leaderboardButton = new JButton("See Leaderboard");
+    public final JButton quitButton = new JButton("Quit");
+    public final JButton replayButton = new JButton("Replay?");
     
     // The boxes as button lists
     public final ArrayList<JButton> boxButton = new ArrayList<>();
@@ -128,6 +129,13 @@ public class DOND_View extends JFrame {
         centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
         centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
         centerWrapper.add(boxGrid);
+        
+        quitButton.setFont(FontManager.BUTTON);
+        leaderboardButton.setFont(FontManager.BUTTON);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(leaderboardButton);
+        buttonPanel.add(quitButton);
+        gameScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         gameScreenPanel.add(centerWrapper, BorderLayout.CENTER);
         
@@ -149,6 +157,16 @@ public class DOND_View extends JFrame {
         
         headingText.setText("You won $"+player.getOfferTaken());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
+        
+        quitButton.setFont(FontManager.BUTTON);
+        leaderboardButton.setFont(FontManager.BUTTON);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(leaderboardButton);
+        buttonPanel.add(quitButton);
+        winScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
+        
+        replayButton.setFont(FontManager.BUTTON);
+        loseScreenPanel.add(replayButton, BorderLayout.NORTH);
         
         winScreenPanel.add(headingText, BorderLayout.CENTER);
         
@@ -174,6 +192,17 @@ public class DOND_View extends JFrame {
                 box.getBoxList().get(player.getBox()-1).getValue());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
         
+        quitButton.setFont(FontManager.BUTTON);
+        leaderboardButton.setFont(FontManager.BUTTON);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(leaderboardButton);
+        buttonPanel.add(quitButton);
+        
+        loseScreenPanel.add(buttonPanel, BorderLayout.SOUTH);
+        
+        replayButton.setFont(FontManager.BUTTON);
+        loseScreenPanel.add(replayButton, BorderLayout.NORTH);
+        
         loseScreenPanel.add(headingText, BorderLayout.CENTER);
         
         add(loseScreenPanel);
@@ -193,11 +222,17 @@ public class DOND_View extends JFrame {
         {
             dondScreen.getBoxButtons().get(i).addActionListener(listener);
         }
-
+        
+        dondScreen.leaderboardButton.addActionListener(listener);
+        dondScreen.quitButton.addActionListener(listener);
+        
+            
         startScreen.submitButton.addActionListener(listener);
         startScreen.quitButton.addActionListener(listener);
         startScreen.leaderboardButton.addActionListener(listener);
         
+        leaderboardButton.addActionListener(listener);
+        quitButton.addActionListener(listener);
         leaderScreen.backButton.addActionListener(listener);
         leaderScreen.resetButton.addActionListener(listener);
         leaderScreen.searchButton.addActionListener(listener);

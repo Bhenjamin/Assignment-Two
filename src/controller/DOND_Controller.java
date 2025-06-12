@@ -91,6 +91,11 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 view.leaderboardScreen();
                 break;
                 
+            case "Replay?":
+                    String[] args = new String[0]; 
+                    Main.main(args);
+                    break;
+                
                 
             default:
                 if (command.startsWith("Box ")) {

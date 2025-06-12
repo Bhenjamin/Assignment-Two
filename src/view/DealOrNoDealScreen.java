@@ -18,6 +18,9 @@ public class DealOrNoDealScreen {
     private final JPanel dealOrNoDealPanel = new JPanel();
     private final JLabel headingText = new JLabel();
     private final ArrayList<JButton> boxButton = new ArrayList<>();
+    
+    public final JButton leaderboardButton = new JButton("See Leaderboard");
+    public final JButton quitButton = new JButton("Quit");
 
     public DealOrNoDealScreen() {
         dealOrNoDealPanel.setLayout(new BorderLayout(20, 20));
@@ -68,7 +71,15 @@ public class DealOrNoDealScreen {
         centerWrapper.setLayout(new BoxLayout(centerWrapper, BoxLayout.Y_AXIS));
         centerWrapper.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
         centerWrapper.add(dond);
-
+        
+        
+        quitButton.setFont(FontManager.BUTTON);
+        leaderboardButton.setFont(FontManager.BUTTON);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(leaderboardButton);
+        buttonPanel.add(quitButton);
+        dealOrNoDealPanel.add(buttonPanel, BorderLayout.SOUTH);
+        
         dealOrNoDealPanel.add(centerWrapper, BorderLayout.CENTER);
     }
 } 
