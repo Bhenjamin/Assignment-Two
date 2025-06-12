@@ -53,6 +53,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                     view.loseScreen(model.getPlayer(), model.getBank(), model.getBoxModel());
                     view.addActionListener(this);
                 }
+                model.notifyGameEnded();
                 break;
                 
             case "No Deal":
@@ -64,7 +65,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 break;
                 
             case "Quit":
-                model.notifyGameEnded();
+                System.exit(0);
                 break;
                 
             case "Back":
@@ -106,6 +107,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                         model.getPlayer().setOfferTaken(model.getBoxModel().getBoxList().get(model.getPlayer().getBox()-1).getValue());
                         view.winScreen(model.getPlayer());
                         view.addActionListener(this);
+                        model.notifyGameEnded();
                     }
                 }
                 break;
@@ -173,7 +175,7 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
     
     @Override
     public void onGameEnded(Player player) {
-        System.exit(0);
+        // Updates
     }
     
     @Override
