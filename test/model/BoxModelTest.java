@@ -25,8 +25,7 @@ public class BoxModelTest {
     }
     
     @BeforeClass
-    public void setUpClass() {
-        boxModel = new BoxModel();
+    public static void setUpClass() {
     }
     
     @AfterClass
@@ -35,6 +34,7 @@ public class BoxModelTest {
     
     @Before
     public void setUp() {
+        boxModel = new BoxModel();
     }
     
     @After
