@@ -18,12 +18,13 @@ public class DBScores {
     private final Connection conn;
     private Statement statement;
     private String tableName = "SCORESTABLE"; // Default table name
-
+    
     public DBScores(DBManager dbManager) {
         this.dbManager = dbManager;
         this.conn = dbManager.getConnection();
     }
-
+    
+    // If you want to change the name of the score table
     public void setScoreTableName(String tableName) {
         this.tableName = tableName;
     }
@@ -45,7 +46,8 @@ public class DBScores {
         }
 
     }
-
+    
+    // Gets a specifc player data from the database
     public Player getPlayer(String playerName) {
         String sqlQuery = "SELECT NAME, SCORE FROM " + tableName + " WHERE NAME = ?";
 
@@ -67,9 +69,9 @@ public class DBScores {
         }
 
     }
-
+    
+    // Adds a new player entry into the database
     public void newPlayerEntry(Player player) {
-        System.out.println("Player data entered sucessfully");
         String sql = "INSERT INTO " + tableName + " (NAME, SCORE) VALUES (?,?)";
 
         String playerName = player.getUsername();
@@ -83,7 +85,8 @@ public class DBScores {
             System.err.println(ex.getMessage());
         }
     }
-
+    
+    // Returns an ArrayList of all players from the database
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> allPlayers = new ArrayList<>();
         String sql = "SELECT NAME, SCORE FROM " + tableName;
@@ -103,7 +106,8 @@ public class DBScores {
         Collections.sort(allPlayers, new sortByScore());
         return allPlayers;
     }
-
+    
+    // Returns the top ten players and adds fillers if needed
     public ArrayList<Player> getLeaderBoard() {
         ArrayList<Player> leaderBoardPlayers = getAllPlayers();
 
@@ -118,7 +122,8 @@ public class DBScores {
 
         return leaderBoardPlayers;
     }
-
+    
+    // Deletes the table if it already exsists
     public void dropATableIfExists(String tableName) {
         try (Statement table = conn.createStatement(); ResultSet rs = conn.getMetaData().getTables(null, null, tableName, new String[]{"TABLE"});) {
 

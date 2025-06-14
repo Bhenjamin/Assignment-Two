@@ -93,8 +93,8 @@ public class DOND_Controller implements ActionListener, GameChangeListener {
                 break;
                 
             case "Return to Main Menu":
-                    String[] args = new String[0]; 
-                    Main.main(args);
+                    view.dispose();
+                    Main.main(new String[0]);
                     break;
                 
                 

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Jun 13 10:57:53 NZST 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0197-665d-320c-00000f27d3c8 
+Sun Jun 15 11:05:39 NZST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0197-70b1-079f-00000f00dd10 
 on database directory C:\Users\benma\Documents\DealNoDealGUI\DOND_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3f99bd52 
 Loaded from file:/C:/Users/benma/Documents/DealNoDealGUI/lib/derby.jar
 java.vendor=Oracle Corporation
