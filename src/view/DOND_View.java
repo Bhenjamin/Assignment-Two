@@ -187,10 +187,10 @@ public class DOND_View extends JFrame {
                 box.getBoxList().get(player.getBox()-1).getValue());
         headingText.setFont(new Font("Arial", Font.BOLD, 32));
         
-        loseScreenPanel.add(addButtonPanel());
+        
         
         loseScreenPanel.add(headingText, BorderLayout.CENTER);
-        
+        loseScreenPanel.add(addButtonPanel(),BorderLayout.SOUTH);
         add(loseScreenPanel);
         revalidate();
         repaint();

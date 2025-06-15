@@ -30,11 +30,13 @@ public class DOND_Model {
         this.dbscores = new DBScores(dbManager);
         // dbscores.createScoresTable();
     }
-
+    
+    // Adds listeners to all the notifable fields
     public void addGameListener(GameChangeListener listener) {
         listeners.add(listener);
     }
     
+    // Updates the model when username is submited
     public void notifyUserNameEntered(String username) {
         // Initilises a new Player object after username
         // Has been submited
@@ -46,6 +48,7 @@ public class DOND_Model {
         //
     }
     
+    // Updates the model when player is searched 
     public void notifyonPlayerSearch(String playerName){
         Player searchedPlayer = dbscores.getPlayer(playerName);
         for (GameChangeListener listener : listeners) {
@@ -69,6 +72,7 @@ public class DOND_Model {
         }
     }
     
+    // Updates the model when game ends 
     public void notifyGameEnded() {
         // Won't add a new entry to database if player is never created
         if(player != null){
