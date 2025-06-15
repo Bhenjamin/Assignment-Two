@@ -89,6 +89,7 @@ public class LeaderboardScreen extends JPanel{
         add(buttonPanel, BorderLayout.SOUTH);
     }
     
+    // Called when you go onto leaderboard, search or reset the leaderboard
     public void updateLeaderboard(ArrayList<Player> topPlayer){
         
         revalidate();
@@ -111,6 +112,7 @@ public class LeaderboardScreen extends JPanel{
         }
     }
     
+    // Active after searching for a player
     public void switchButtonLayoutWhenSearching(){
         // Changes the button layout to one button
         // To return the user back to the default leaderboard view
@@ -120,6 +122,7 @@ public class LeaderboardScreen extends JPanel{
         buttonPanel.repaint();
     }
     
+    // Switches back to default button layout
     public void switchButtonLayoutDefault(){
         // Changes the button layout back to default
         buttonPanel.removeAll();

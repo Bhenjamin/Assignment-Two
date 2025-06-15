@@ -102,7 +102,8 @@ public class DBScores {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+        
+        // Sorts the list by score - highest to lowest
         Collections.sort(allPlayers, new sortByScore());
         return allPlayers;
     }
